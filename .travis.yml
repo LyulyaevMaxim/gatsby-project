@@ -6,6 +6,4 @@ cache:
 env:
   - isCI=true
 script:
-  - yarn lint:css
-#  - yarn lint:js  TODO: need fix for TS
-  - yarn test:unit
+  - yarn ci

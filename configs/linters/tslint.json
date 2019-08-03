@@ -39,7 +39,9 @@
     "member-access": false,
     "member-ordering": false,
     "no-extra-semicolon": false,
-    "no-use-of-empty-return-value": false
+    "no-use-of-empty-return-value": false,
+    "no-suspicious-comment": false,
+    "react-a11y-role-has-required-aria-props": false
   },
   "rulesDirectory": ["tslint-plugin-prettier"],
   "linterOptions": {

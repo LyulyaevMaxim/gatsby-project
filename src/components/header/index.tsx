@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
 
 const styles = {
   header: css`
-    padding: 1.5rem 1rem;
+    /*padding: 1.5rem 1rem;*/
   `,
 }
 
@@ -87,8 +87,8 @@ export const Header: React.FC<IHeaderProps> = props => {
 
 export const PureHeader: React.FC<IHeader> = props => {
   const classes = useStyles(),
-    { siteTitle } = props,
-    titleFromAPI = props.data.site.siteMetadata.title
+    { siteTitle } = props
+    // titleFromAPI = props.data.site.siteMetadata.title
 
   return (
     <HideOnScroll>

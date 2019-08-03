@@ -1,5 +1,5 @@
 import path from 'path'
-import {get } from 'lodash'
+import { get } from 'lodash'
 import locales from './src/modules/i18'
 // import { createPokemonPages } from './src/store/pokemons/actions'
 // import { createProductPages } from './src/store/products/actions'
@@ -53,7 +53,7 @@ exports.onCreatePage = ({ page, actions }) => {
         ...page.context,
         locale: lang,
         dateFormat: currentLocale.dateFormat,
-        pageName: get(/(?<filename>[a-z]+)-\w+$/.exec(page.jsonName), 'groups.filename', 'index')
+        pageName: get(/(?<filename>[a-z]+)-\w+$/.exec(page.jsonName), 'groups.filename', 'index'),
       },
     })
   })
@@ -87,4 +87,3 @@ exports.createPages = async ({ page, actions: { createPage, deletePage }, graphq
 /*exports.onCreateNode = ({ node }) => {
   console.log('createNode', node.internal.type)
 }*/
-

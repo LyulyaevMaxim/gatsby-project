@@ -59,5 +59,6 @@ module.exports = {
     'no-missing-end-of-source-newline': null,
     'comment-empty-line-before': null,
     'comment-whitespace-inside': null,
+    'no-empty-source': withJS && null,
   },
 }

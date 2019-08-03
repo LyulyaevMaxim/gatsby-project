@@ -25,6 +25,7 @@
     "cy:run": "cypress run",
     "lint:js": "eslint --fix src/ --ext .js,.jsx && tslint --project './tsconfig.json' --config './configs/linters/tslint.json' './src/**/*.{ts,tsx}' && tsc --noEmit",
     "lint:css": "cross-env withJS=false stylelint src/**/*.{css,pcss} & stylelint src/**/*.{tsx,jsx}",
+    "ci": "yarn lint:css && yarn lint:js && yarn test:unit",
     "format": "prettier --write *",
     "build": "yarn gatsbyES build",
     "serve": "gatsby serve",
@@ -39,30 +40,9 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
+      "pre-commit": "yarn ci",
       "post-commit": "git update-index --again"
     }
-  },
-  "lint-staged": {
-    "*": [
-      "yarn format"
-    ],
-    "linters": {
-      "*.{ts,tsx,js,jsx,json}": [
-        "yarn lint:js",
-        "yarn lint:css",
-        "git add"
-      ],
-      "*.{css,pcss}": [
-        "yarn lint:css",
-        "git add"
-      ]
-    },
-    "ignore": [
-      "**/node_modules/",
-      "public",
-      ".cache"
-    ]
   },
   "eslintConfig": {
     "extends": "./configs/linters/.eslintrc.js"
@@ -100,7 +80,6 @@
   "optionalDependencies": {
     "gh-pages": "2.1.0",
     "husky": "3.0.2",
-    "lint-staged": "9.2.1",
     "now": "15.8.7",
     "npm-check-updates": "3.1.20",
     "prettier": "1.18.2"
