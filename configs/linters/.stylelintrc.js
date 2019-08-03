@@ -1,16 +1,17 @@
 /* you can run "yarn stylelint-find-rules" to find stylelint rules that are not unused, deprecated or invalid */
 const path = require('path'),
-  root = path.resolve(__dirname, '../../')
+  root = path.resolve(__dirname, '../../'),
+  withJS = process.env.withJS === 'true'
 
 module.exports = {
-  processors: ['stylelint-processor-styled-components'],
+  ...(withJS && { processors: ['stylelint-processor-styled-components'] }),
   extends: [
     'stylelint-config-recommended-scss',
     'stylelint-config-airbnb',
-    'stylelint-config-styled-components',
+    withJS && 'stylelint-config-styled-components',
     'stylelint-config-standard',
     'stylelint-config-prettier',
-  ],
+  ].filter(Boolean),
   plugins: [
     'stylelint-scss',
     'stylelint-order',
@@ -58,5 +59,6 @@ module.exports = {
     'no-missing-end-of-source-newline': null,
     'comment-empty-line-before': null,
     'comment-whitespace-inside': null,
+    ...(withJS && { 'no-empty-source': null }),
   },
 }

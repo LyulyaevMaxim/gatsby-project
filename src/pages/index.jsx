@@ -7,7 +7,7 @@ import { Button } from '@material-ui/core'
 import { Link } from 'modules/link'
 import { useDispatch } from 'react-redux'
 import { notificationAdd } from 'store/notifications/actions'
-import { toast } from 'react-toastify'
+import toastify, { toast } from 'react-toastify'
 
 import { Layout } from 'components/layout'
 import Image from 'components/image'
@@ -39,13 +39,13 @@ export default function IndexPage() {
       <Button
         onClick={addNotification}
         css={css`
-          background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
+          /*background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);*/
           border-radius: 3px;
-          border: 0;
-          color: white;
+          /*border: 0;
+          color: white;*/
           height: 48px;
           padding: 0 30px;
-          box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
+          /*box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);*/
         `}
       >
         MUI + Emotion
@@ -53,13 +53,13 @@ export default function IndexPage() {
       <button
         type="button"
         css={css`
-          background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
+          /*background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);*/
           border-radius: 3px;
-          border: 0;
-          color: white;
+          /*border: 0;*/
+          /*color: white;*/
           height: 48px;
           padding: 0 30px;
-          box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
+          /*box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);*/
         `}
       >
         Only Emotion

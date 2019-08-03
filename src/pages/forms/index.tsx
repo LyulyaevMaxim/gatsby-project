@@ -61,7 +61,7 @@ const initialValues = {
     }, 400)
   },
   formRender = (props: FormikProps<IFormValues>) => {
-    const { isSubmitting, errors, touched, validateField, validateForm } = props
+    const { isSubmitting/*, errors, touched, validateField, validateForm*/ } = props
     return (
       <Form>
         <Field name="username" validate={validateUsername} />

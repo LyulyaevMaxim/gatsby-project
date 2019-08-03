@@ -41,7 +41,7 @@ const Notification = React.memo(({ notificationId }) => {
   return (
     <div>
       <span>{notificationData.message}</span>
-      <button onClick={hideNotification}>Hide</button>
+      <button type='button' onClick={hideNotification}>Hide</button>
     </div>
   )
 })

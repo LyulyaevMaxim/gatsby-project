@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer'
 // import { ThemeProvider } from "emotion-theming"
 
 const Button = styled.div`
-  color: hotpink;
+  /*color: hotpink;*/
 `
 
 test('Button renders correctly', () => {

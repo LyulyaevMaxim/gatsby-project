@@ -12,6 +12,7 @@ exports[`NotFoundPage renders correctly 1`] = `
   ",
     }
   }
+  type="button"
 >
   Text
 </button>

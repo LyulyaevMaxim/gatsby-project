@@ -19,4 +19,3 @@ exports.replaceRenderer = ({ bodyComponent, replaceBodyHTMLString }) => {
   replaceBodyHTMLString(renderToString(<ConnectedBody />))
 }
 */
-
