@@ -1,7 +1,7 @@
 {
   "name": "gatsby-project",
   "description": "Effective environment for frontend development",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "author": "Lyulyaev Maxim",
   "private": true,
   "workspaces": [
@@ -32,11 +32,10 @@
     "deploy::now": "yarn build && cd public && now -d --public",
     "deploy::github": "yarn build --prefix-paths && gh-pages -d public",
     "deploy::docker": "yarn build && yarn version-increment && sudo docker build -t lyulyaevma/gatsby-project:$(cat version.num) . && sudo docker push lyulyaevma/gatsby-project:$(cat version.num)",
-    "version-increment": "perl -i -pe 's/^((\\d+\\.)*)(\\d+)(.*)$/$1.($3+1).$4/e' < version.num version.num",
     "storybook": "start-storybook --config-dir ./configs/storybook -p 6006",
     "storybook:build": "build-storybook --config-dir ./configs/storybook",
     "gatsbyES": "node -r esm ./node_modules/.bin/gatsby",
-    "merge": "git checkout master && yarn version-increment && get merge --squash develop"
+    "version-increment": "perl -i -pe 's/^((\\d+\\.)*)(\\d+)(.*)$/$1.($3+1).$4/e' < version.num version.num"
   },
   "husky": {
     "hooks": {
@@ -85,14 +84,18 @@
     "prettier": "1.18.2"
   },
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "react",
+    "typescript",
+    "graphql",
+    "tests"
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/LyulyaevMaxim/gatsby-project"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/LyulyaevMaxim/gatsby-project/issues"
   }
 }
