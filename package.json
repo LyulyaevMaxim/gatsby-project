@@ -26,7 +26,7 @@
     "lint:js": "eslint --fix src/ --ext .js,.jsx && tslint --project './tsconfig.json' --config './configs/linters/tslint.json' './src/**/*.{ts,tsx}' && tsc --noEmit",
     "lint:css": "cross-env withJS=false stylelint src/**/*.{css,pcss} & stylelint src/**/*.{tsx,jsx}",
     "ci": "yarn lint:css && yarn lint:js && yarn test:unit",
-    "format": "prettier --write *",
+    "format": "prettier --write *.{html,tsx,ts,jsx,js,json,css,pcss,svg}",
     "build": "yarn gatsbyES build",
     "serve": "gatsby serve",
     "deploy::now": "yarn build && cd public && now -d --public",
@@ -40,7 +40,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn ci",
+      "pre-commit": "yarn format && yarn ci",
       "post-commit": "git update-index --again"
     }
   },
