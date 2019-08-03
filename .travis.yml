@@ -1,5 +1,9 @@
 language: node_js
 node_js:
   - lts/*
+cache:
+  yarn: true
+env:
+  - isCI=true
 script:
   - yarn test:unit
