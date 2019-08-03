@@ -1,0 +1,12 @@
+{
+  "name": "localization-module",
+  "description": "Module for localization",
+  "version": "1.0.0",
+  "author": "Lyulyaev Maxim",
+  "license": "MIT",
+  "dependencies": {
+    "i18next": "17.0.8",
+    "i18next-fetch-backend": "2.2.0",
+    "react-i18next": "10.11.4"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "request-module",
+  "description": "Module for work with requests",
+  "version": "1.0.0",
+  "author": "Lyulyaev Maxim",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "0.19.0",
+    "socket.io": "2.2.0",
+    "use-socket.io-client": "1.0.4"
+  }
+}

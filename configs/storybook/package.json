@@ -1,0 +1,15 @@
+{
+  "name": "gatsby-project-storybook",
+  "description": "Storybook configuration",
+  "author": "Lyulyaev Maxim",
+  "version": "1.0.0",
+  "license": "MIT",
+  "devDependencies": {
+    "@storybook/react": "5.1.10",
+    "@storybook/addon-actions": "5.1.10",
+    "@storybook/addon-links": "5.1.10",
+    "@storybook/addons": "5.1.10",
+    "@babel/preset-typescript": "7.3.3",
+    "@types/storybook__react": "4.0.2"
+  }
+}

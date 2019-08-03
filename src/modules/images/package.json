@@ -1,0 +1,11 @@
+{
+  "name": "images-module",
+  "description": "Module for work with images",
+  "version": "1.0.0",
+  "author": "Lyulyaev Maxim",
+  "license": "MIT",
+  "dependencies": {
+    "gatsby-background-image": "0.7.0",
+    "gatsby-image": "2.1.2"
+  }
+}

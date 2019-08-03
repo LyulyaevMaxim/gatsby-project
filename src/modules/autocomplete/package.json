@@ -1,0 +1,10 @@
+{
+  "name": "autocomplete-module",
+  "description": "Module for autocomplete",
+  "version": "1.0.0",
+  "author": "Lyulyaev Maxim",
+  "license": "MIT",
+  "dependencies": {
+    "react-select": "3.0.4"
+  }
+}

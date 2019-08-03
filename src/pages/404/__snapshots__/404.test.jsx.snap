@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFoundPage renders correctly 1`] = `
+<button
+  css={
+    Object {
+      "map": undefined,
+      "name": "yu9yz2",
+      "next": undefined,
+      "styles": "
+    padding: 1.5rem 1rem;
+  ",
+    }
+  }
+>
+  Text
+</button>
+`;
