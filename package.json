@@ -24,7 +24,7 @@
     "test:e2e-ci": "START_SERVER_AND_TEST_INSECURE=1 start-server-and-test develop https://localhost:8000 cy:run",
     "cy:run": "cypress run",
     "lint:js": "eslint --fix src/ --ext .js,.jsx && tslint --project './tsconfig.json' --config './configs/linters/tslint.json' './src/**/*.{ts,tsx}' && tsc --noEmit",
-    "lint:css": "stylelint --fix src/**/*.{css,pcss}",
+    "lint:css": "cross-env withJS=false stylelint src/**/*.{css,pcss} & stylelint src/**/*.{tsx,jsx}",
     "format": "prettier --write *",
     "build": "yarn gatsbyES build",
     "serve": "gatsby serve",

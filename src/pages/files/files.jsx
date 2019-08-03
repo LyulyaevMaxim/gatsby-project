@@ -6,7 +6,7 @@ export default ({ data }) => {
   return (
     <Layout>
       <div>
-        <h1>My Site's Files</h1>
+        <h1>Files of my site</h1>
         <table>
           <thead>
             <tr>
@@ -19,8 +19,8 @@ export default ({ data }) => {
             </tr>
           </thead>
           <tbody>
-            {data.allFile.edges.map(({ node }, index) => (
-              <tr key={index}>
+            {data.allFile.edges.map(({ node }) => (
+              <tr key={node.relativePath}>
                 <td>{node.relativePath}</td> 
                 {' '}
                 <td>{node.prettySize}</td>

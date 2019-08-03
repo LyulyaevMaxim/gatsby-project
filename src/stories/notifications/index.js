@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { toast, cssTransition } from 'react-toastify'
+import toastify, { toast, cssTransition } from 'react-toastify'
 import { Button } from '@material-ui/core'
 import { css } from '@emotion/core'
 import { NotificationsContainer, addNotification } from '../../modules/notifications'
@@ -154,8 +154,8 @@ export function NotificationsDemo() {
         {['Slide', 'Zoom', 'Flip', 'Bounce'].map(transition => (
           <Button
             children={transition}
-            onClick={() =>
-              addNotification({ transition: require('react-toastify')[transition], message: `It's ${transition}` })
+            onClick={() => //TODO: maybe bug, return require
+              addNotification({ transition: toastify[transition], message: `It's ${transition}` })
             }
             variant="contained"
             color="primary"
