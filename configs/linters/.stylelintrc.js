@@ -1,8 +1,8 @@
 /* you can run "yarn stylelint-find-rules" to find stylelint rules that are not unused, deprecated or invalid */
 const path = require('path'),
   root = path.resolve(__dirname, '../../'),
-  withJS = process.env.withJS !== 'false'
-
+  withJS = process.env.withJS !== 'false';
+console.log(process.env.withJS, typeof process.env.withJS, withJS);
 module.exports = {
   ...(withJS && { processors: ['stylelint-processor-styled-components'] }),
   extends: [
