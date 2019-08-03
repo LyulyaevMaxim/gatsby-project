@@ -3,6 +3,8 @@ node_js:
   - lts/*
 cache:
   yarn: true
+  directories:
+    - /**/node_modules
 env:
   - isCI=true
 script:
