@@ -1,7 +1,7 @@
 /* you can run "yarn stylelint-find-rules" to find stylelint rules that are not unused, deprecated or invalid */
 const path = require('path'),
   root = path.resolve(__dirname, '../../'),
-  withJS = process.env.withJS && true
+  withJS = process.env.withJS !== 'false'
 
 module.exports = {
   ...(withJS && { processors: ['stylelint-processor-styled-components'] }),
@@ -59,6 +59,6 @@ module.exports = {
     'no-missing-end-of-source-newline': null,
     'comment-empty-line-before': null,
     'comment-whitespace-inside': null,
-    'no-empty-source': withJS && null,
+    ...(withJS && { 'no-empty-source': null }),
   },
 }
