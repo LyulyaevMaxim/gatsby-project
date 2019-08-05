@@ -9,7 +9,7 @@ const connectSystemFiles = [
 ].map(options => ({ resolve: 'gatsby-source-filesystem', options }))
 
 module.exports = {
-  pathPrefix: `/react-project`, //repository name
+  pathPrefix: `/gatsby-project`, //repository name
   proxy: {
     prefix: '/api',
     url: process.env.API_URL,
