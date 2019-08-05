@@ -5,8 +5,6 @@ cache:
   yarn: true
   directories:
     - /**/node_modules
-env:
-  - isCI=true
 script:
   - yarn ci
 before_deploy:
