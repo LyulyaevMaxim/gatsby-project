@@ -7,7 +7,12 @@ cache:
     - /**/node_modules
 script:
   - yarn ci
-after_script:
+before_deploy:
   - yarn global add netlify-cli
   - yarn build
-  - netlify deploy -s $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN -p ./public
+deploy:
+  provider: script
+  script: netlify deploy -s $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN -p ./public
+  skip_cleanup: true
+  on:
+    all_branches: true
