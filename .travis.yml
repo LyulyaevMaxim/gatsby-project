@@ -5,7 +5,14 @@ cache:
   yarn: true
   directories:
     - /**/node_modules
-env:
-  - isCI=true
 script:
   - yarn ci
+before_deploy:
+  - yarn global add netlify-cli
+  - yarn build
+deploy:
+  provider: script
+  script: netlify deploy -s $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN -p ./public
+  skip_cleanup: true
+  on:
+    all_branches: true
