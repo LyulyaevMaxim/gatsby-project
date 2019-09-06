@@ -81,7 +81,6 @@ module.exports = {
     // '@typescript-eslint/interface-name-prefix': 0,
 
     'react/jsx-max-depth': [1, { max: 5 }],
-    'no-unused-vars': 1,
     'no-shadow': 1,
     'react-hooks/exhaustive-deps': 1,
 

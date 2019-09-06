@@ -10,10 +10,20 @@ jobs:
         run: yarn
       - name: Formatting
         continue-on-error: true
-        run: ls
+        run: yarn format
       - name: CSS
         continue-on-error: true
         run: yarn lint:css
       - name: JS
         continue-on-error: true
-        run: node -v
+        run: yarn lint:js
+
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install Dependencies
+        run: yarn
+      - name: Formatting
+        continue-on-error: true
+        run: yarn test:unit
