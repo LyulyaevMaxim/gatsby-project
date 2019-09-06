@@ -1,0 +1,18 @@
+name: CI
+on: [pull_request]
+
+jobs:
+  linters:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Dependencies
+        run: yarn
+      - name: Formatting
+        continue-on-error: true
+        run: yarn format
+      - name: CSS
+        continue-on-error: true
+        run: yarn lint:css
+      - name: JS
+        continue-on-error: true
+        run: yarn lint:js
