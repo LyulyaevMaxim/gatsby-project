@@ -6,7 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install Dependencies
-        run: yarn
+        run: |
+          cd ../../
+          yarn
       - name: Formatting
         continue-on-error: true
         run: yarn format
