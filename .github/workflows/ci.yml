@@ -6,20 +6,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install Dependencies
-        run: |
-          cd ../
-          ls
-          yarn
+        run: yarn
       - name: Formatting
         continue-on-error: true
-        run: |
-          ls
-          yarn format
+        run: ls
       - name: CSS
         continue-on-error: true
-        run: |
-          cd ../gatsby-project
-          yarn lint:css
+        run: yarn lint:css
       - name: JS
         continue-on-error: true
         run: yarn lint:js
