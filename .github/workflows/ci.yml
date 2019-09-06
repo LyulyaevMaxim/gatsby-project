@@ -16,6 +16,7 @@ jobs:
           yarn format
       - name: JS
         run: yarn lint:js
+        continue-on-error: true
       - name: CSS
         run: yarn lint:css
       - name: Check on failures
