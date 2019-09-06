@@ -5,6 +5,7 @@ jobs:
   linters:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v1
       - name: Install Dependencies
         run: yarn
       - name: Formatting
@@ -15,4 +16,4 @@ jobs:
         run: yarn lint:css
       - name: JS
         continue-on-error: true
-        run: yarn lint:js
+        run: node -v
