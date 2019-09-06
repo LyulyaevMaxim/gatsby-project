@@ -9,14 +9,12 @@ jobs:
       - name: Install Dependencies
         run: yarn
       - name: Formatting
-        continue-on-error: true
         run: yarn format
-      - name: CSS
-        continue-on-error: true
-        run: yarn lint:css
       - name: JS
-        continue-on-error: true
         run: yarn lint:js
+      - name: CSS
+        run: yarn lint:css
+
 
   tests:
     runs-on: ubuntu-latest
@@ -25,5 +23,4 @@ jobs:
       - name: Install Dependencies
         run: yarn
       - name: Unit
-        continue-on-error: true
         run: yarn test:unit
