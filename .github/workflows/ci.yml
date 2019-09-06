@@ -24,6 +24,6 @@ jobs:
       - uses: actions/checkout@v1
       - name: Install Dependencies
         run: yarn
-      - name: Formatting
+      - name: Unit
         continue-on-error: true
         run: yarn test:unit
