@@ -9,12 +9,18 @@ jobs:
       - name: Install Dependencies
         run: yarn
       - name: Formatting
-        run: yarn format
+        env:
+          STEPS_CONTEXT: ${{ toJson(steps) }}
+        run: |
+          echo "$STEPS_CONTEXT"
+          yarn format
       - name: JS
         run: yarn lint:js
       - name: CSS
         run: yarn lint:css
-
+      - name: Check on failures
+        if: failure()
+        run: exit 1
 
   tests:
     runs-on: ubuntu-latest
