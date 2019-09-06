@@ -8,13 +8,18 @@ jobs:
       - name: Install Dependencies
         run: |
           cd ../../
+          ls
           yarn
       - name: Formatting
         continue-on-error: true
-        run: yarn format
+        run: |
+          ls
+          yarn format
       - name: CSS
         continue-on-error: true
-        run: yarn lint:css
+        run: |
+          cd ../../
+          yarn lint:css
       - name: JS
         continue-on-error: true
         run: yarn lint:js
