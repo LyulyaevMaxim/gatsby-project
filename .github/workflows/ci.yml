@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Install Dependencies
         run: |
-          cd ../../
+          cd ../
           ls
           yarn
       - name: Formatting
@@ -18,7 +18,7 @@ jobs:
       - name: CSS
         continue-on-error: true
         run: |
-          cd ../../
+          cd ../gatsby-project
           yarn lint:css
       - name: JS
         continue-on-error: true
