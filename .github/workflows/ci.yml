@@ -33,5 +33,7 @@ jobs:
         continue-on-error: true
         id: unit
       - name: Check on failures
+        env:
+          STEPS_CONTEXT: ${{ toJson(steps) }}
         if: steps.unit.status == failure()
-        run: ${{ toJson(steps) }} ${{ toJson(job) }}
+        run: ${{ toJson(steps) }} ${{ toJson(steps.unit) }} ${{ toJson(job) }} ${{ STEPS_CONTEXT }}
