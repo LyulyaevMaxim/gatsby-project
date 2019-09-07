@@ -10,13 +10,16 @@ jobs:
         run: yarn
       - name: Formatting
         run: yarn format
-      - id: js
-        run: yarn lint:js
-        continue-on-error: true
       - name: CSS
         run: yarn lint:css
+        continue-on-error: true
+        id: css
+      - name: JS
+        run: yarn lint:js
+        continue-on-error: true
+        id: js
       - name: Check on failures
-        if: job.steps.js.status == failure()
+        if: job.steps.css.status == failure() || job.steps.js.status == failure()
         run: exit 1
 
   tests:
@@ -27,3 +30,8 @@ jobs:
         run: yarn
       - name: Unit
         run: yarn test:unit
+        continue-on-error: true
+        id: unit
+      - name: Check on failures
+        if: job.steps.unit.status == failure()
+        run: exit 1
