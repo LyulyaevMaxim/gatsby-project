@@ -9,18 +9,14 @@ jobs:
       - name: Install Dependencies
         run: yarn
       - name: Formatting
-        env:
-          STEPS_CONTEXT: ${{ toJson(steps) }}
-        run: |
-          echo "$STEPS_CONTEXT"
-          yarn format
-      - name: JS
+        run: yarn format
+      - id: js
         run: yarn lint:js
         continue-on-error: true
       - name: CSS
         run: yarn lint:css
       - name: Check on failures
-        if: failure()
+        if: job.steps.js.status == failure()
         run: exit 1
 
   tests:
