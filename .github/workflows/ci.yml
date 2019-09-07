@@ -28,11 +28,10 @@ jobs:
       - uses: actions/checkout@v1
       - name: Install Dependencies
         run: yarn
-        id: hello
       - name: Unit
         run: yarn test:unit
         continue-on-error: true
         id: unit
       - name: Check on failures
 #        if: steps.unit.status == failure()
-        run: ${{ toJson(steps) }} ${{ toJson(steps.hello) }}
+        run: ${{ toJson(steps) }}   ${{ toJson(jobs.tests.steps.unit) }}
