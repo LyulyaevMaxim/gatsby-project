@@ -36,4 +36,4 @@ jobs:
         env:
           STEPS_CONTEXT: ${{ toJson(steps) }}
         if: steps.unit.status == failure()
-        run: ${{ toJson(steps) }} ${{ toJson(steps.unit) }} ${{ toJson(job) }} ${{ STEPS_CONTEXT }}
+        run: ${{ toJson(steps) }} ${{ toJson(steps.unit) }} ${{ toJson(job) }} $STEPS_CONTEXT
