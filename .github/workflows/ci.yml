@@ -34,4 +34,4 @@ jobs:
         id: unit
       - name: Check on failures
         if: job.steps.unit.status == failure()
-        run: steps
+        run: job
