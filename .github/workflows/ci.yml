@@ -34,4 +34,4 @@ jobs:
         id: unit
       - name: Check on failures
 #        if: steps.unit.status == failure()
-        run: ${{ toJson(steps), toJson(job.steps) }}  ${{ toJson(job.steps.unit.status) }}
+        run: ${{ toJson(steps) }} ${{ toJson(job.steps) }}  ${{ toJson(job.steps.unit.status) }}
