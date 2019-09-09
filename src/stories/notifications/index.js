@@ -120,7 +120,7 @@ export function NotificationsDemo() {
               onClose: ({ myProp }) => console.log(`It was closed`, myProp),
             })
 
-            function ToastComp(props) {
+            function ToastComp(/*props*/) {
               return 'With callbacks on open and close notification'
             }
           }}

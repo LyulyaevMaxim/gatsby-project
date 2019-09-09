@@ -12,15 +12,15 @@ jobs:
         run: yarn format
       - name: CSS
         run: yarn lint:css
-        continue-on-error: true
+#        continue-on-error: true
         id: css
       - name: JS
         run: yarn lint:js
-        continue-on-error: true
+#        continue-on-error: true
         id: js
-      - name: Check on failures
-        if: job.steps.css.status == failure() # || job.steps.js.status == failure()
-        run: exit 1
+#      - name: Check on failures
+#        if: job.steps.css.status == failure() || job.steps.js.status == failure()
+#        run: exit 1
 
   tests:
     runs-on: ubuntu-latest
@@ -30,8 +30,23 @@ jobs:
         run: yarn
       - name: Unit
         run: yarn test:unit
-        continue-on-error: true
+#        continue-on-error: true
         id: unit
-      - name: Check on failures
-#        if: steps.unit.status == failure()
-        run: ${{ toJson(steps) }} ${{ toJson(job.steps) }}  ${{ toJson(job.steps.unit.status) }}
+#      - name: Check on failures
+#        if: job.steps.unit.status == failure()
+#        run: exit 1
+  deploy:
+    needs: [linters, tests]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install Dependencies
+        run: |
+          yarn
+          yarn global add netlify-cli
+      - name: Build
+        run: yarn build
+      - name: Deploy
+        run:  netlify deploy -s ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_ACCESS_TOKEN }}
+
+
