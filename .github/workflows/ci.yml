@@ -42,9 +42,9 @@ jobs:
       - uses: actions/checkout@v1
       - name: Install Dependencies
         run: yarn
-      - name: Build
-        run: yarn build
-      - name: Deploy
-        run:  npx netlify deploy -s ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_ACCESS_TOKEN }}
-
-
+      - uses: actions/checkout@v1
+        env:
+          NETLIFY_CMD: yarn build
+        with:
+          GITHUB_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
