@@ -54,7 +54,7 @@ i18next
   .init(i18nConfig)
 
 i18next.on('languageChanged', lng => {
-  // console.log('Language was changed')
+  console.log('Language was changed', lng)
   // moment.locale(lng);
 })
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { NotificationsContainer, addNotification } from 'modules/notifications'
+// import { NotificationsContainer, addNotification } from 'modules/notifications'
 import { notificationHide } from 'store/notifications/actions'
 import { createSelector } from 'reselect'
 
