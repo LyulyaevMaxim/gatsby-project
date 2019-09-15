@@ -39,12 +39,13 @@ module.exports = {
     'prettier',
   ],
   extends: [
-    'react-app',
+    // 'react-app',
     // 'eslint:recommended',
     'airbnb',
     // 'esnext',
     'plugin:import/errors',
     'plugin:import/warnings',
+    // 'plugin:import/typescript',
     // 'plugin:promise/recommended',
     // 'plugin:security/recommended',
     // 'plugin:you-dont-need-lodash-underscore/compatible',
@@ -64,6 +65,13 @@ module.exports = {
     // 'prettier/@typescript-eslint',
   ],
   rules: {
+    'one-var': 0,
+    'spaced-comment': 0,
+    'no-param-reassign': 1,
+    'no-use-before-define': 0,
+    'no-unused-vars': 1,
+    'no-shadow': 1,
+
     'react/prop-types': 0,
     'react/jsx-no-literals': 0,
     'react/jsx-filename-extension': 0,
@@ -71,22 +79,18 @@ module.exports = {
     'react/jsx-closing-tag-location': 0,
     'react/destructuring-assignment': 0,
     'react/no-children-prop': 0,
+    'react/jsx-props-no-spreading': 0,
+    'react/require-default-props': 2,
+    'react/jsx-max-depth': [1, { max: 5 }],
+    'react-hooks/exhaustive-deps': 1,
+    'react-hooks/rules-of-hooks': 2,
+
     'import/no-extraneous-dependencies': 0, //because of Yarn Workspaces
     'import/prefer-default-export': 0,
-    'one-var': 0,
-    'spaced-comment': 0,
-    'no-param-reassign': 1,
-    'no-use-before-define': 0,
+
     // '@typescript-eslint/no-use-before-define': 0,
     // '@typescript-eslint/interface-name-prefix': 0,
 
-    'react/jsx-max-depth': [1, { max: 5 }],
-    'no-unused-vars': 1,
-    'no-shadow': 1,
-    'react-hooks/exhaustive-deps': 1,
-
-    'react/require-default-props': 2,
-    'react-hooks/rules-of-hooks': 2,
     /* I can use it because disabling rules don't work
     '@typescript-eslint/tslint/config': [
       2,
@@ -141,7 +145,7 @@ module.exports = {
   settings: {
     'import/core-modules': ['gatsby'],
     'import/resolver': {
-      webpack: {
+      /*webpack: {
         // config: `${root}/webpack.config.js`,
         config: {
           resolve: {
@@ -149,6 +153,10 @@ module.exports = {
             modules: [`${root}/src`, `${root}/node_modules`],
           },
         },
+      },*/
+      node: {
+        paths: [`${root}/src`],
+        extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
       },
     },
     react: {

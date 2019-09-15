@@ -2,7 +2,7 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 
-export function useActions(actions, deps) {
+export function useActions(actions) {
   const dispatch = useDispatch()
   return React.useMemo(
     () =>

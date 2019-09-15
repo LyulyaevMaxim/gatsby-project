@@ -7,7 +7,7 @@ import { Button } from '@material-ui/core'
 import { Link } from 'modules/link'
 import { useDispatch } from 'react-redux'
 import { notificationAdd } from 'store/notifications/actions'
-import toastify, { toast } from 'react-toastify'
+// import toastify, { toast } from 'react-toastify'
 
 import { Layout } from 'components/layout'
 import Image from 'components/image'

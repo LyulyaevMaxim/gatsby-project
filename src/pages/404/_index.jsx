@@ -3,7 +3,7 @@ import { css } from '@emotion/core'
 // import Layout from 'components/layout'
 // import SEO from 'components/seo'
 
-const translates = {
+/*const translates = {
   en: {
     title: ({ title }) => `Not found on ${title}`,
     text: `You just hit a route that doesn't exist`,
@@ -12,7 +12,7 @@ const translates = {
     title: ({ title }) => `Страница ${title} не найдена`,
     text: 'К сожалению, адреса, на который вы перешли, не существует',
   },
-}
+}*/
 
 const styles = {
   button: css`
@@ -20,12 +20,11 @@ const styles = {
   `,
 }
 
-
 export const NotFoundPage = ({ data, pathContext: { langKey }, ...props }) => (
-  <React.Fragment>
+  <>
     <button type='button' css={styles.button}>Text</button>
     {/* <SEO title="404: Not found" /> */}
     {/*<h1>{translates[langKey].title({ title: data.site.siteMetadata.title })}</h1>*/}
     {/*<p>{translates[langKey].text}</p>*/}
-  </React.Fragment>
+  </>
 )

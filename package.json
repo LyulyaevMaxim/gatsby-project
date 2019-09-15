@@ -15,31 +15,30 @@
     "node 10"
   ],
   "scripts": {
-    "upgrade-packages": "node ./configs/upgradePackages.js",
     "develop": "GATSBY_GRAPHQL_IDE=playground yarn gatsbyES develop -o -H 0.0.0.0",
     "crossDev": "yarn develop -H $HOSTNAME",
+    "storybook": "start-storybook --config-dir ./configs/storybook -p 6006",
+    "storybook:build": "build-storybook --config-dir ./configs/storybook",
     "test:unit": "jest --config ./configs/tests/jest.config.js --detectOpenHandles",
     "test:e2e": "START_SERVER_AND_TEST_INSECURE=1 start-server-and-test develop https://localhost:8000 cy:open",
-    "cy:open": "cypress open",
     "test:e2e-ci": "START_SERVER_AND_TEST_INSECURE=1 start-server-and-test develop https://localhost:8000 cy:run",
-    "cy:run": "cypress run",
+    "format": "prettier --write *.{html,tsx,ts,jsx,js,json,css,pcss,svg}",
     "lint:js": "eslint --fix src/ --ext .js,.jsx && tslint --project './tsconfig.json' --config './configs/linters/tslint.json' './src/**/*.{ts,tsx}' && tsc --noEmit",
     "lint:css": "stylelint 'src/**/*.{css,pcss}' & cross-env withJS=true stylelint 'src/**/*.{tsx,jsx}'",
-    "ci": "yarn lint:css && yarn lint:js && yarn test:unit",
-    "format": "prettier --write *.{html,tsx,ts,jsx,js,json,css,pcss,svg}",
     "build": "yarn gatsbyES build",
     "serve": "gatsby serve",
     "deploy::now": "yarn build && cd public && now -d --public",
     "deploy::github": "yarn build --prefix-paths && gh-pages -d public",
     "deploy::docker": "yarn build && yarn version-increment && sudo docker build -t lyulyaevma/gatsby-project:$(cat version.num) . && sudo docker push lyulyaevma/gatsby-project:$(cat version.num)",
-    "storybook": "start-storybook --config-dir ./configs/storybook -p 6006",
-    "storybook:build": "build-storybook --config-dir ./configs/storybook",
+    "upgrade-packages": "node ./configs/upgradePackages.js",
     "gatsbyES": "node -r esm ./node_modules/.bin/gatsby",
-    "version-increment": "perl -i -pe 's/^((\\d+\\.)*)(\\d+)(.*)$/$1.($3+1).$4/e' < version.num version.num"
+    "version-increment": "perl -i -pe 's/^((\\d+\\.)*)(\\d+)(.*)$/$1.($3+1).$4/e' < version.num version.num",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn format && yarn ci",
+      "pre-commit": "yarn format && yarn lint:css && yarn lint:js && yarn test:unit",
       "post-commit": "git update-index --again"
     }
   },
@@ -53,34 +52,34 @@
     "extends": "./configs/babelrc.js"
   },
   "devDependencies": {
-    "@babel/core": "7.5.5",
-    "core-js": "2.6.9",
-    "@babel/plugin-proposal-optional-chaining": "7.2.0",
+    "@babel/core": "7.6.0",
+    "@babel/plugin-proposal-optional-chaining": "7.6.0",
     "babel-loader": "8.0.6",
-    "babel-preset-gatsby": "0.2.8",
+    "babel-preset-gatsby": "0.2.13",
+    "core-js": "2.6.9",
     "esm": "3.2.25",
-    "gatsby": "2.13.50",
-    "gatsby-plugin-feed": "2.3.6",
-    "gatsby-plugin-google-analytics": "2.1.6",
-    "gatsby-plugin-manifest": "2.2.4",
-    "gatsby-plugin-offline": "2.2.4",
-    "gatsby-plugin-react-helmet": "3.1.3",
-    "gatsby-plugin-sharp": "2.2.9",
-    "gatsby-plugin-sitemap": "2.2.5",
-    "gatsby-plugin-typescript": "2.1.2",
+    "gatsby": "2.15.15",
+    "gatsby-plugin-feed": "2.3.12",
+    "gatsby-plugin-google-analytics": "2.1.16",
+    "gatsby-plugin-manifest": "2.2.16",
+    "gatsby-plugin-offline": "3.0.6",
+    "gatsby-plugin-react-helmet": "3.1.7",
+    "gatsby-plugin-sharp": "2.2.22",
+    "gatsby-plugin-sitemap": "2.2.12",
+    "gatsby-plugin-typescript": "2.1.7",
     "gatsby-plugin-typescript-checker": "1.1.1",
-    "gatsby-source-filesystem": "2.1.8",
-    "gatsby-source-graphql": "2.1.3",
-    "gatsby-source-mongodb": "2.1.3",
-    "gatsby-transformer-json": "2.2.2",
-    "gatsby-transformer-sharp": "2.2.5",
-    "typescript": "3.5.3"
+    "gatsby-source-filesystem": "2.1.22",
+    "gatsby-source-graphql": "2.1.14",
+    "gatsby-source-mongodb": "2.1.12",
+    "gatsby-transformer-json": "2.2.8",
+    "gatsby-transformer-sharp": "2.2.14",
+    "typescript": "3.6.3"
   },
   "optionalDependencies": {
-    "gh-pages": "2.1.0",
-    "husky": "3.0.2",
-    "now": "15.8.7",
-    "npm-check-updates": "3.1.20",
+    "gh-pages": "2.1.1",
+    "husky": "3.0.5",
+    "now": "16.2.0",
+    "npm-check-updates": "3.1.23",
     "prettier": "1.18.2"
   },
   "keywords": [
@@ -97,5 +96,9 @@
   },
   "bugs": {
     "url": "https://github.com/LyulyaevMaxim/gatsby-project/issues"
+  },
+  "resolutions": {
+    "immer": "4.0.0",
+    "@emotion/core": "10.0.17"
   }
 }
