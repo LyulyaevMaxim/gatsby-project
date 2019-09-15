@@ -5,7 +5,8 @@
   "author": "Lyulyaev Maxim",
   "license": "MIT",
   "dependencies": {
-    "luxon": "1.17.3"
+    "luxon": "1.17.3",
+    "react-day-picker": "7.3.2"
   },
   "devDependencies": {
     "@types/luxon": "1.15.2"

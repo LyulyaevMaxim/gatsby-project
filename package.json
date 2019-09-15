@@ -15,31 +15,30 @@
     "node 10"
   ],
   "scripts": {
-    "upgrade-packages": "node ./configs/upgradePackages.js",
     "develop": "GATSBY_GRAPHQL_IDE=playground yarn gatsbyES develop -o -H 0.0.0.0",
     "crossDev": "yarn develop -H $HOSTNAME",
+    "storybook": "start-storybook --config-dir ./configs/storybook -p 6006",
+    "storybook:build": "build-storybook --config-dir ./configs/storybook",
     "test:unit": "jest --config ./configs/tests/jest.config.js --detectOpenHandles",
     "test:e2e": "START_SERVER_AND_TEST_INSECURE=1 start-server-and-test develop https://localhost:8000 cy:open",
-    "cy:open": "cypress open",
     "test:e2e-ci": "START_SERVER_AND_TEST_INSECURE=1 start-server-and-test develop https://localhost:8000 cy:run",
-    "cy:run": "cypress run",
+    "format": "prettier --write *.{html,tsx,ts,jsx,js,json,css,pcss,svg}",
     "lint:js": "eslint --fix src/ --ext .js,.jsx && tslint --project './tsconfig.json' --config './configs/linters/tslint.json' './src/**/*.{ts,tsx}' && tsc --noEmit",
     "lint:css": "stylelint 'src/**/*.{css,pcss}' & cross-env withJS=true stylelint 'src/**/*.{tsx,jsx}'",
-    "ci": "yarn lint:css && yarn lint:js && yarn test:unit",
-    "format": "prettier --write *.{html,tsx,ts,jsx,js,json,css,pcss,svg}",
     "build": "yarn gatsbyES build",
     "serve": "gatsby serve",
     "deploy::now": "yarn build && cd public && now -d --public",
     "deploy::github": "yarn build --prefix-paths && gh-pages -d public",
     "deploy::docker": "yarn build && yarn version-increment && sudo docker build -t lyulyaevma/gatsby-project:$(cat version.num) . && sudo docker push lyulyaevma/gatsby-project:$(cat version.num)",
-    "storybook": "start-storybook --config-dir ./configs/storybook -p 6006",
-    "storybook:build": "build-storybook --config-dir ./configs/storybook",
+    "upgrade-packages": "node ./configs/upgradePackages.js",
     "gatsbyES": "node -r esm ./node_modules/.bin/gatsby",
-    "version-increment": "perl -i -pe 's/^((\\d+\\.)*)(\\d+)(.*)$/$1.($3+1).$4/e' < version.num version.num"
+    "version-increment": "perl -i -pe 's/^((\\d+\\.)*)(\\d+)(.*)$/$1.($3+1).$4/e' < version.num version.num",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn format && yarn ci",
+      "pre-commit": "yarn format && yarn lint:css && yarn lint:js && yarn test:unit",
       "post-commit": "git update-index --again"
     }
   },

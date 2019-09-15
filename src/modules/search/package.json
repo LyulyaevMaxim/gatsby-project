@@ -1,0 +1,10 @@
+{
+  "name": "search-module",
+  "description": "Module for searching",
+  "version": "1.0.0",
+  "author": "Lyulyaev Maxim",
+  "license": "MIT",
+  "dependencies": {
+    "@appbaseio/reactivesearch": "3.0.0"
+  }
+}
