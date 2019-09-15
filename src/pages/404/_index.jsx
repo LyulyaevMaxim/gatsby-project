@@ -22,10 +22,10 @@ const styles = {
 
 
 export const NotFoundPage = ({ data, pathContext: { langKey }, ...props }) => (
-  <React.Fragment>
+  <>
     <button type='button' css={styles.button}>Text</button>
     {/* <SEO title="404: Not found" /> */}
     {/*<h1>{translates[langKey].title({ title: data.site.siteMetadata.title })}</h1>*/}
     {/*<p>{translates[langKey].text}</p>*/}
-  </React.Fragment>
+  </>
 )

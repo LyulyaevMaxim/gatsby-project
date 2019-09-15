@@ -18,9 +18,7 @@ export function configureStore(preloadedState) {
     combineReducers({
       counter: (state = { count: 0 }, action) => {
         if (action.type === `INCREMENT`) {
-          return Object.assign({}, state, {
-            count: state.count + 1,
-          })
+          return { ...state, count: state.count + 1,}
         }
         return state
       },
