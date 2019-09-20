@@ -11,9 +11,18 @@ jobs:
       - name: Formatting
         run: yarn format
       - name: CSS
+        id: css
         run: yarn lint:css
+        continue-on-error: true
       - name: JS
+        id: js
         run: yarn lint:js
+        continue-on-error: true
+      - name: Check on failures
+        if: job.steps.css.status == 'failure' || job.steps.js.status == 'failure'
+        run: |
+          echo CSS - ${{ job.steps.css.status }}, JS - ${{ job.steps.js.status }}
+          exit 1
 
   tests:
     runs-on: ubuntu-latest
