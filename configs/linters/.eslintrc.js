@@ -13,16 +13,16 @@ module.exports = {
   },
   parserOptions: {
     ecmaVersion: 2019,
-    project: `${root}/tsconfig.json`,
-    tsconfigRootDir: root,
+    // project: `${root}/tsconfig.json`,
+    // tsconfigRootDir: root,
     ecmaFeatures: {
       jsx: true,
     },
   },
   plugins: [
     'import',
-    '@typescript-eslint',
-    '@typescript-eslint/tslint',
+    // '@typescript-eslint',
+    // '@typescript-eslint/tslint',
     'react',
     'react-hooks',
     // 'promise',
@@ -71,6 +71,7 @@ module.exports = {
     'no-use-before-define': 0,
     'no-unused-vars': 1,
     'no-shadow': 1,
+    'prefer-template': 0,
 
     'react/prop-types': 0,
     'react/jsx-no-literals': 0,

@@ -10,14 +10,7 @@
     "baseUrl": "./",
     "types": ["jest", "node"],
     "paths": {
-      "~components/*": ["src/components/*"],
-      "~store/*": ["src/store/*"],
-      "~utils/*": ["src/utils/*"],
-      "~modules/*": ["src/modules/*"],
-      "~styles/*": ["src/styles/*"],
-      "~img/*": ["src/images/*"],
-      "~types/*": ["src/types/*"],
-      "modernizr$": [".modernizrrc.js"]
+      "*": ["./src/*"]
     },
 
     "allowSyntheticDefaultImports": true,

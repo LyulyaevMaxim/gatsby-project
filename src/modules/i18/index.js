@@ -8,15 +8,18 @@ import 'isomorphic-fetch'
 import backend from 'i18next-fetch-backend'
 import resources from '../../../static/locales'
 
+export const languages = Object.keys(resources)
+export const defaultLanguage = 'en'
+
 export const i18nConfig = {
   debug: false, //process.env.isDev
   fallbackLng: {
     uk: ['ru'],
     be: ['ru'],
-    default: ['en'],
+    default: [defaultLanguage],
   },
-  ns: Object.keys(resources.en),
-  whitelist: Object.keys(resources),
+  ns: Object.keys(resources[defaultLanguage]),
+  whitelist: languages,
   resources, //not null, because of troubles with SSR
   backend: {
     loadPath: 'locales/{{lng}}/{{ns}}.json',
@@ -64,6 +67,7 @@ i18next.on('languageChanged', lng => {
  */
 /*i18next.loadNamespaces('index', (err, t) => {  })*/
 
+//TODO: -> new Map(), delete const 'languages'
 export default {
   en: {
     default: true,
