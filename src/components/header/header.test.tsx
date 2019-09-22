@@ -9,7 +9,6 @@ describe('Header', () => {
       renderer
         .create(
           <PureHeader
-            siteTitle='React Project'
             data={{
               site: {
                 siteMetadata: {
