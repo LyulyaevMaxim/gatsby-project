@@ -13,7 +13,7 @@ exports[`Header renders correctly 1`] = `
   <h6
     className="MuiTypography-root makeStyles-title-3 MuiTypography-h6"
   >
-    React Project
+    Gatsby Project
   </h6>
   <button
     className="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-2"

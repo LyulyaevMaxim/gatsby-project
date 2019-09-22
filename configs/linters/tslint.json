@@ -32,6 +32,7 @@
     "no-var-requires": false,
     "max-union-size": false,
     "prefer-array-literal": false,
+    "prefer-template": false,
     "array-type": false,
     "no-empty-interface": false,
     "object-shorthand-properties-first": false,
