@@ -65,7 +65,7 @@ export default function IndexPage() {
         Only Emotion
       </button>
 
-      <StyledButton primary children="Only Styled Components 5" />
+      {/*<StyledButton primary children="Only Styled Components 5" />*/}
     </Layout>
   )
 }
