@@ -16,45 +16,45 @@ jobs:
       - name: CSS
         id: css
         continue-on-error: true
-        run: |
-          yarn lint:css
-          echo ::set-output name=status::success
+        run: yarn lint:css && echo ::set-output name=status::success
 
       - name: JS
         id: js
         continue-on-error: true
-        run: |
-          yarn lint:js
-          echo ::set-output name=status::success
-
-      - name: Dump steps context
-        env:
-          STEPS_CONTEXT: ${{ toJson(steps) }}
-        run: echo "$STEPS_CONTEXT"
+        run: yarn lint:js && echo ::set-output name=status::success
 
       - name: Check on failures
         if: steps.css.outputs.status != 'success' || steps.js.outputs.status != 'success'
-        run: |
-          echo ${{ toJson(steps) }}
-          exit 1
+        run: exit 1
 
   tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+
       - name: Installing Dependencies
         run: yarn
+
       - name: Unit
-        run: yarn test:unit
+        id: unit
+        continue-on-error: true
+        run: yarn test:unit && echo ::set-output name=status::success
+
+      - name: Check on failures
+        if: steps.unit.outputs.status != 'success'
+        run: exit 1
 
   deploy:
     needs: [linters, tests]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+
       - name: Installing Dependencies
         run: yarn
+
       - name: Building
         run: yarn build
+
       - name: Deploying
         run: npx netlify-cli deploy -s ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_ACCESS_TOKEN }}
