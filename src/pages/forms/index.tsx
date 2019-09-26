@@ -12,6 +12,7 @@ import {
 } from 'formik'
 import * as Yup from 'yup'
 import { navigate } from 'gatsby'
+import { Layout } from 'components/layout'
 
 interface IFormValues {
   firstName: string
@@ -94,7 +95,7 @@ const initialValues = {
   }
 
 const FormsPage: React.FC<{}> = () => (
-  <>
+  <Layout>
     <Formik
       initialValues={initialValues}
       validationSchema={SignupSchema}
@@ -105,7 +106,7 @@ const FormsPage: React.FC<{}> = () => (
       render={formRender}
     />
     <EnhancedReusingForm message="Sign up" />
-  </>
+  </Layout>
 )
 
 interface IReusingFormValues {

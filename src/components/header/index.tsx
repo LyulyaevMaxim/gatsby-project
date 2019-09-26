@@ -41,7 +41,6 @@ const styles = {
 }
 
 interface IHeaderProps {
-  siteTitle: string
 }
 
 interface IStaticQueryProps {
@@ -87,14 +86,13 @@ export const Header: React.FC<IHeaderProps> = props => {
 
 export const PureHeader: React.FC<IHeader> = props => {
   const classes = useStyles(),
-    { siteTitle } = props
-    // titleFromAPI = props.data.site.siteMetadata.title
+    titleFromAPI = props.data.site.siteMetadata.title
 
   return (
     <HideOnScroll>
       <AppBar data-test-id="header" className={classes.header}>
         <Typography variant="h6" className={classes.title}>
-          {siteTitle}
+          {titleFromAPI}
         </Typography>
 
         <HeaderMenu />
@@ -164,8 +162,4 @@ function HeaderMenu() {
   function handleMenuOpen(event) {
     setAnchorEl(event.currentTarget)
   }
-}
-
-PureHeader.defaultProps = {
-  siteTitle: ``,
 }
