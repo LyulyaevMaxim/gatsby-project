@@ -27,6 +27,7 @@
     "lint:css": "stylelint 'src/**/*.{css,pcss}' & cross-env withJS=true stylelint 'src/**/*.{tsx,jsx}'",
     "build": "yarn gatsbyES build",
     "serve": "gatsby serve",
+    "deploy::netlify": "npx netlify-cli deploy",
     "deploy::now": "yarn build && cd public && now -d --public",
     "deploy::github": "yarn build --prefix-paths && gh-pages -d public",
     "deploy::docker": "yarn build && yarn version-increment && sudo docker build -t lyulyaevma/gatsby-project:$(cat version.num) . && sudo docker push lyulyaevma/gatsby-project:$(cat version.num)",
