@@ -1,0 +1,10 @@
+{
+  "name": "hooks-module",
+  "description": "Module with hooks",
+  "version": "1.0.0",
+  "author": "Lyulyaev Maxim",
+  "license": "MIT",
+  "dependencies": {
+    "react-use": "12.2.0"
+  }
+}

@@ -19,7 +19,7 @@
     "crossDev": "yarn develop -H $HOSTNAME",
     "storybook": "start-storybook --config-dir ./configs/storybook -p 6006",
     "storybook:build": "build-storybook --config-dir ./configs/storybook",
-    "test:unit": "jest --config ./configs/tests/jest.config.js --detectOpenHandles",
+    "test:unit": "IS_TESTS=true jest --config ./configs/tests/jest.config.js --detectOpenHandles --no-cache",
     "test:e2e": "START_SERVER_AND_TEST_INSECURE=1 start-server-and-test develop https://localhost:8000 cy:open",
     "test:e2e-ci": "START_SERVER_AND_TEST_INSECURE=1 start-server-and-test develop https://localhost:8000 cy:run",
     "format": "prettier --write *.{html,tsx,ts,jsx,js,json,css,pcss,svg}",

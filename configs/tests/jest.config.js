@@ -2,7 +2,7 @@ const path = require('path'),
   root = path.resolve(__dirname, '../../')
 
 module.exports = {
-  testURL: `http://0.0.0.0y`,
+  testURL: `http://0.0.0.0`,
   browser: true,
   roots: [`${root}/src`, `./__mocks__`],
   testPathIgnorePatterns: [`node_modules`, `.cache`],
@@ -25,14 +25,13 @@ module.exports = {
       tsConfig: `${root}/tsconfig.json`,
     },
   },
-  setupFiles: [`./loadershim.js`],
-  setupFilesAfterEnv: ['@testing-library/react/cleanup-after-each'],
+  setupFiles: [`./loadershim.js`], //'@testing-library/react/dont-cleanup-after-each'
+  setupFilesAfterEnv: [`./jest.setup.js`],
   bail: 1,
   notify: true,
   errorOnDeprecated: true,
   // resetModules: false,
   snapshotSerializers: ['jest-emotion'],
-  // setupFilesAfterEnv: [`./setupEnzyme.js`],
   // resolver: `${root}/__tests__/resolver.js`
   prettierPath: `${root}/node_modules/prettier`,
   // automock: false,

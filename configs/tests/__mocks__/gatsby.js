@@ -3,15 +3,14 @@ const React = require('react'),
 
 module.exports = {
   ...gatsby,
-  graphql: jest.fn(),
-  Link: jest.fn().mockImplementation(
-    // these props are invalid for an `a` tag
-    ({ activeClassName, activeStyle, getProps, innerRef, ref, replace, to, ...rest }) =>
-      React.createElement('a', {
-        ...rest,
-        href: to,
-      })
+  ...['graphql', 'StaticQuery', 'useStaticQuery'].reduce(
+    (acc, currentKey) => ({ ...acc, [currentKey]: jest.fn() }),
+    {}
   ),
-  StaticQuery: jest.fn(),
-  useStaticQuery: jest.fn(),
+  TransitionLink: jest.fn().mockImplementation(({ to, ...rest }) =>
+    React.createElement('a', {
+      ...rest,
+      href: to,
+    })
+  ),
 }

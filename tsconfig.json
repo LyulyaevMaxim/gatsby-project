@@ -10,7 +10,8 @@
     "baseUrl": "./",
     "types": ["jest", "node"],
     "paths": {
-      "*": ["./src/*"]
+      "*": ["./src/*"],
+      "static/*": ["./static/*"]
     },
 
     "allowSyntheticDefaultImports": true,

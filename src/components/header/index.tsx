@@ -1,105 +1,90 @@
 import React from 'react'
-import { Link, StaticQuery, graphql } from 'gatsby'
+import { Link, StaticQuery, useStaticQuery, graphql } from 'gatsby'
 import TransitionLink from 'gatsby-plugin-transition-link'
+import BackgroundImage, { IFluidObject } from 'gatsby-background-image'
+import Img from 'gatsby-image'
 import { css } from '@emotion/core'
 import { AppBar, IconButton, Typography, Slide, useScrollTrigger, Menu, MenuItem } from '@material-ui/core'
 import { makeStyles, fade } from '@material-ui/core/styles'
 import { Menu as MenuIcon } from '@material-ui/icons'
-// import styled from '@emotion/styled'
-// import styles from './index.module.css'
-// import BackgroundImage from 'gatsby-background-image'
+import { useWindowScroll, useThrottleFn } from 'react-use'
+import i18next from 'i18next'
 
-// console.log(obj?.foo?.bar?.baz)
+interface IHeaderProps {}
 
-const useStyles = makeStyles(theme => ({
-  header: {
-    display: 'grid',
-    gridTemplateColumns: 'max-content max-content',
-    gridGap: theme.spacing(2),
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: theme.spacing(1, 2),
-  },
-  menuButton: {
-    color: 'inherit',
-    width: 'max-content',
-    [theme.breakpoints.up('lg')]: {
-      display: 'none',
-    },
-  },
-  title: {
-    '&:hover': {
-      color: fade(theme.palette.common.white, 0.25),
-    },
-  },
-}))
-
-const styles = {
-  header: css`
-    /*padding: 1.5rem 1rem;*/
-  `,
-}
-
-interface IHeaderProps {
-}
-
-interface IStaticQueryProps {
+interface IHeaderQueryProps {
   site: {
     siteMetadata: {
       title: string
-      // description: string
+      description: string
     }
-    buildTime: string
   }
-  desktop: any
-}
-
-interface IHeader extends IHeaderProps {
-  data: IStaticQueryProps
+  logoImage: {
+    childImageSharp: {
+      fluid: IFluidObject
+    }
+  }
 }
 
 export const Header: React.FC<IHeaderProps> = props => {
-  const render = React.useCallback((data: IStaticQueryProps) => <PureHeader {...props} data={data} />, [props])
-  return (
-    <StaticQuery
-      query={graphql`
-        query {
-          site {
-            siteMetadata {
-              title
-            }
-            buildTime(formatString: "DD/MM/YYYY")
-          }
-          desktop: file(relativePath: { eq: "gatsby-astronaut.png" }) {
-            childImageSharp {
-              fluid(quality: 100, maxWidth: 4160) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
+  const data: IHeaderQueryProps = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+          description
+        }
+      }
+      logoImage: file(relativePath: { eq: "gatsby-icon.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 50) {
+            ...GatsbyImageSharpFluid
           }
         }
-      `}
-      render={render}
-    />
-  )
+      }
+    }
+  `)
+  return <PureHeader {...props} data={data} />
+}
+
+interface IHeader extends IHeaderProps {
+  data: IHeaderQueryProps
 }
 
 export const PureHeader: React.FC<IHeader> = props => {
   const classes = useStyles(),
-    titleFromAPI = props.data.site.siteMetadata.title
+    [headerHeight, setHeaderHeight] = React.useState(0),
+    headerRef = React.useRef<HTMLElement>(null),
+    { title: siteTitle, /*description: siteDescription*/ } = props.data.site.siteMetadata,
+    currentLanguage = i18next.language
+
+  React.useEffect(() => {
+    const header = headerRef.current
+    if (header) setHeaderHeight(() => header.clientHeight)
+  }, [])
 
   return (
-    <HideOnScroll>
-      <AppBar data-test-id="header" className={classes.header}>
-        <Typography variant="h6" className={classes.title}>
-          {titleFromAPI}
-        </Typography>
+    <header
+      data-testid="header-container"
+      className={classes.headerContainer}
+      css={css`
+        height: ${headerHeight}px;
+      `}
+    >
+      <HideOnScroll headerHeight={headerHeight}>
+        <AppBar data-testid="header-content" component="div" className={classes.header} ref={headerRef}>
+          <TransitionLink data-testid="header-logo" to={`/${currentLanguage}`} className={classes.title}>
+            <Img
+              data-testid="header-logo-image" //don't set
+              fluid={props.data.logoImage.childImageSharp.fluid}
+              className={classes.logo}
+            />
+            <h2 data-testid="header-logo-title">{siteTitle}</h2>
+          </TransitionLink>
+          {/*<HeaderMenu />*/}
 
-        <HeaderMenu />
-        {/* <BackgroundImage Tag="nav" css={nav} fluid={data.desktop.childImageSharp.fluid}> */}
-        {/*<h1>
-        <Link to="/">{siteTitle}</Link>
-        <TransitionLink to="/404">404</TransitionLink>
+          {/*<h1>
+
         <Link
           to="/item/1"
           activeClassName="active"
@@ -109,57 +94,66 @@ export const PureHeader: React.FC<IHeader> = props => {
         >
           {titleFromAPI}
         </Link>
-        <Link to="/confirmation/" replace>
-          Yes, I’m sure
-        </Link>
+
       </h1>*/}
-        {/* </BackgroundImage> */}
-        {/*<p>This site was last built on: {props.data.site.buildTime}</p>*/}
-      </AppBar>
-    </HideOnScroll>
+          {/* </BackgroundImage> */}
+          {/*<p>This site was last built on: {props.data.site.buildTime}</p>*/}
+        </AppBar>
+      </HideOnScroll>
+    </header>
   )
 }
 
-function HideOnScroll(props : {children: React.ReactNode}) {
-  const { children } = props,
-    trigger = useScrollTrigger()
+const useStyles = makeStyles(theme => ({
+  headerContainer: {},
+  header: {
+    // position: 'sticky',
+    // position: 'static',
+    // display: 'grid',
+    // gridTemplateColumns: 'max-content max-content',
+    // gridGap: theme.spacing(2),
+    // alignItems: 'center',
+    // justifyContent: 'space-between',
+    padding: theme.spacing(1, 2),
+    // backgroundColor: theme.palette.primary.main,
+    // color: theme.palette.primary.contrastText
+  },
+  menuButton: {
+    color: 'inherit',
+    width: 'max-content',
+    [theme.breakpoints.up('lg')]: {
+      display: 'none',
+    },
+  },
+  title: {
+    display: 'inline-grid',
+    alignItems: 'center',
+    gridTemplateColumns: 'repeat(2,max-content)',
+    gridGap: theme.spacing(1),
 
-  return (
-    <Slide appear={false} direction="down" in={!trigger}>
-      {children}
-    </Slide>
-  )
-}
+    '& > h2': theme.typography.h6,
+    '&:hover > h2': {
+      color: fade(theme.palette.common.white, 0.25),
+    },
+  },
+  logo: {
+    width: 50,
+  },
+}))
 
-function HeaderMenu() {
-  const classes = useStyles(),
-    [anchorEl, setAnchorEl] = React.useState(null)
+function HideOnScroll(props: { children: React.ReactNode; headerHeight: number }) {
+  const { children, headerHeight } = props,
+    { y } = useWindowScroll(),
+    lastY = React.useRef(0)
 
-  return (
-    <>
-      <IconButton className={classes.menuButton} onClick={handleMenuOpen}>
-        <MenuIcon />
-      </IconButton>
-      <Menu
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        // keepMounted
-        onClose={handleMenuClose}
-      >
-        <MenuItem onClick={handleMenuClose}>Item 1</MenuItem>
-        <MenuItem onClick={handleMenuClose}>Item 2</MenuItem>
-        <MenuItem onClick={handleMenuClose}>Item 3</MenuItem>
-      </Menu>
-    </>
-  )
+  const needHideElement = value => {
+      const isScrollOnTop = lastY.current < value,
+        isEnoughScrollToBottom = value > 1.5 * headerHeight
+      lastY.current = value
+      return isScrollOnTop && isEnoughScrollToBottom
+    },
+    //onInWithThrottle = useThrottleFn(needHideElement, 300, [y]), //TODO: Jest error
+    onIn = /*!process.env.IS_TESTS ? onInWithThrottle : */ needHideElement(y)
 
-  function handleMenuClose() {
-    setAnchorEl(null)
-  }
-
-  function handleMenuOpen(event) {
-    setAnchorEl(event.currentTarget)
-  }
+  return <Slide direction="down" appear={false} in={!onIn} children={children} />
 }

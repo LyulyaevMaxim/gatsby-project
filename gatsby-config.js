@@ -1,8 +1,8 @@
 /* https://www.gatsbyjs.org/docs/gatsby-config/ */
+import env from 'dotenv'
+import { siteMetadata } from './static/constants/index.ts'
 
-require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
+env.config({ path: `.env.${process.env.NODE_ENV}` })
 
 const connectSystemFiles = [
   { name: 'images', path: `${__dirname}/src/images` },
@@ -16,13 +16,7 @@ module.exports = {
     prefix: '/api',
     url: process.env.API_URL,
   },
-  siteMetadata: {
-    title: 'React Project',
-    description: 'Description',
-    author: 'Lyulyaev Maxim',
-    apiUrl: process.env.API_URL,
-    siteUrl: `https://www.example.com`,
-  },
+  siteMetadata,
   plugins: [
     /*{
       resolve: 'gatsby-plugin-eslint',
@@ -108,6 +102,18 @@ module.exports = {
       },
     },
     // 'gatsby-plugin-offline',
+    /*{
+      resolve: `gatsby-plugin-netlify`,
+      options: {
+        headers: {}, // option to add more headers. `Link` headers are transformed by the below criteria
+        allPageHeaders: [], // option to add headers for all pages. `Link` headers are transformed by the below criteria
+        mergeSecurityHeaders: true, // boolean to turn off the default security headers
+        mergeLinkHeaders: true, // boolean to turn off the default gatsby js headers
+        mergeCachingHeaders: true, // boolean to turn off the default caching headers
+        transformHeaders: (headers, path) => headers, // optional transform for manipulating headers under each path (e.g.sorting), etc.
+        generateMatchPathRewrites: true, // boolean to turn off automatic creation of redirect rules for client only paths
+      },
+    },*/
     /*{
       resolve: `gatsby-plugin-netlify`,
       options: {

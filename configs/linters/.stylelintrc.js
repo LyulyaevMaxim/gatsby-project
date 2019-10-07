@@ -49,7 +49,7 @@ module.exports = {
     'order/order': ['custom-properties', 'dollar-variables', 'declarations', 'at-rules', 'rules'],
     'order/properties-alphabetical-order': true,
     'selector-type-no-unknown': [true, { ignore: ['custom-elements'] }],
-    'selector-class-pattern': '^[a-z][a-zA-Z0-9]+$', //lowerCamelCase
+    // 'selector-class-pattern': '^[a-z][a-zA-Z0-9]+$', //lowerCamelCase, TODO: need exclude another's classes
     'block-no-empty': null,
     'at-rule-no-unknown': null,
     // 'scss/at-rule-no-unknown': true,
