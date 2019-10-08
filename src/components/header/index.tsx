@@ -9,6 +9,7 @@ import { makeStyles, fade } from '@material-ui/core/styles'
 import { Menu as MenuIcon } from '@material-ui/icons'
 import { useWindowScroll, useThrottleFn } from 'react-use'
 import i18next from 'i18next'
+import { LocaleSelect } from 'modules/forms/fields/LocaleSelect'
 
 interface IHeaderProps {}
 
@@ -55,7 +56,7 @@ export const PureHeader: React.FC<IHeader> = props => {
   const classes = useStyles(),
     [headerHeight, setHeaderHeight] = React.useState(0),
     headerRef = React.useRef<HTMLElement>(null),
-    { title: siteTitle, /*description: siteDescription*/ } = props.data.site.siteMetadata,
+    { title: siteTitle /*description: siteDescription*/ } = props.data.site.siteMetadata,
     currentLanguage = i18next.language
 
   React.useEffect(() => {
@@ -81,6 +82,7 @@ export const PureHeader: React.FC<IHeader> = props => {
             />
             <h2 data-testid="header-logo-title">{siteTitle}</h2>
           </TransitionLink>
+          <LocaleSelect />
           {/*<HeaderMenu />*/}
 
           {/*<h1>
@@ -107,16 +109,14 @@ export const PureHeader: React.FC<IHeader> = props => {
 const useStyles = makeStyles(theme => ({
   headerContainer: {},
   header: {
-    // position: 'sticky',
-    // position: 'static',
-    // display: 'grid',
-    // gridTemplateColumns: 'max-content max-content',
-    // gridGap: theme.spacing(2),
-    // alignItems: 'center',
-    // justifyContent: 'space-between',
+    display: 'grid',
+    gridTemplateColumns: 'max-content 150px',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: theme.spacing(1, 2),
-    // backgroundColor: theme.palette.primary.main,
-    // color: theme.palette.primary.contrastText
+    [theme.breakpoints.only('xs')]: {
+      gridTemplateColumns: 'max-content 80px',
+    },
   },
   menuButton: {
     color: 'inherit',

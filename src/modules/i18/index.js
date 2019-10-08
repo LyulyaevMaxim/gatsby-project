@@ -28,7 +28,7 @@ export const i18nConfig = {
   react: {
     useSuspense: false,
   },
-
+  ...(process.env.IS_TESTS && { lng: 'en' }),
   interpolation: {
     escapeValue: false, // react already safes from xss
     format: (value, format, lang) => {
@@ -76,8 +76,8 @@ export default {
     dateFormat: `DD/MM/YYYY`,
     siteLanguage: `en`,
     ogLanguage: `en_US`,
-    defaultTitle: `Using i18n with Gatsby`,
-    defaultDescription: `Gatsby project`,
+    defaultTitle: `Gatsby project`,
+    defaultDescription: `My Gatsby project`,
   },
   ru: {
     path: 'ru',
@@ -85,7 +85,16 @@ export default {
     dateFormat: `DD.MM.YYYY`,
     siteLanguage: `ru`,
     ogLanguage: `ru_RU`,
-    defaultTitle: `Gatsby с локализацией через i18n`,
-    defaultDescription: `Мой gatsby-project `,
+    defaultTitle: `Проект Gatsby`,
+    defaultDescription: `Мой проект Gatsby`,
+  },
+  ar: {
+    path: 'ar',
+    locale: `ar-AR`,
+    dateFormat: `DD.MM.YYYY`,
+    siteLanguage: `ar`,
+    ogLanguage: `ar_AR`,
+    defaultTitle: `مشروع غاتسبي`,
+    defaultDescription: `مشروع غاتسبي بلدي`,
   },
 }

@@ -1,5 +1,10 @@
 {
   "pageTitle": "React Project",
   "title": "Hi people",
-  "text": "Welcome to your new site."
+  "text": "Welcome to your new site.",
+  "languages": {
+    "en": "English",
+    "ru": "Russian",
+    "ar": "Arabic"
+  }
 }

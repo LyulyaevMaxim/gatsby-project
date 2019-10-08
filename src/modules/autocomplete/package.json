@@ -5,6 +5,9 @@
   "author": "Lyulyaev Maxim",
   "license": "MIT",
   "dependencies": {
-    "react-select": "3.0.4"
+    "react-select": "3.0.8"
+  },
+  "devDependencies": {
+    "@types/react-select": "3.0.5"
   }
 }
