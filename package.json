@@ -99,7 +99,6 @@
     "url": "https://github.com/LyulyaevMaxim/gatsby-project/issues"
   },
   "resolutions": {
-    "immer": "4.0.0",
-    "@emotion/core": "10.0.17"
+    "immer": "4.0.0"
   }
 }

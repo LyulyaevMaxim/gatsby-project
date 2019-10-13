@@ -13,6 +13,7 @@
     "no-constant-condition": true,
     "no-default-export": false, // need false only for /pages/
     "no-relative-imports": false, //[true, "allow-siblings"], //don't work
+    "no-duplicate-string": false,
     //"strict-boolean-expressions": true
     "export-name": false,
     "prettier": false,
@@ -42,7 +43,8 @@
     "no-extra-semicolon": false,
     "no-use-of-empty-return-value": false,
     "no-suspicious-comment": false,
-    "react-a11y-role-has-required-aria-props": false
+    "react-a11y-role-has-required-aria-props": false,
+    "react-a11y-no-onchange": false
   },
   "rulesDirectory": ["tslint-plugin-prettier"],
   "linterOptions": {

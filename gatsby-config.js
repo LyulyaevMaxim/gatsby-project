@@ -27,15 +27,6 @@ module.exports = {
     /* images: optimizations and GraphQL */
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
-
-    {
-      resolve: `gatsby-plugin-material-ui`,
-      options: {
-        stylesProvider: {
-          injectFirst: true,
-        },
-      },
-    },
     'gatsby-plugin-emotion',
     //although intended for SC, but help Emotion with a compact displaying in DevTools
     'gatsby-plugin-styled-components',
