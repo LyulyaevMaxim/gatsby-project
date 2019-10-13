@@ -1,5 +1,5 @@
 import React from 'react'
-import * as I from './index.d'
+import * as I from './types'
 
 export const FieldSelectLengthCSS: React.FC<I.IFieldSelectLengthCSS> = React.memo(props => {
   const { menuItems } = props,

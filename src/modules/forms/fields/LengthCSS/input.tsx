@@ -1,5 +1,5 @@
 import React from 'react'
-import * as I from './index.d'
+import * as I from './types'
 
 interface IInputState {
   value: string

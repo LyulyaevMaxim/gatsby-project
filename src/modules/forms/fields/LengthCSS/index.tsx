@@ -1,7 +1,7 @@
 import React from 'react'
 import { css } from '@emotion/core'
 import { get } from 'lodash'
-import * as I from './index.d'
+import * as I from './types'
 import { FieldInputLengthCSS, patterns } from './input'
 import { FieldSelectLengthCSS } from './select'
 
@@ -25,7 +25,11 @@ export const FieldLengthCSS = (props: I.IFieldLengthCSS & IDefaultProps) => {
         value: number || defaultValue || currentState.value,
         unit: (() => {
           if (unit) return unit
-          if (number && currentState.unit in I.defaultUnitsOfMeasure) return menuItems[0]
+          if (defaultValue) return defaultValue as I.allUnits
+          if (number && currentState.unit in I.defaultUnitsOfMeasure) {
+            const numericOptions = Object.keys(I.numericUnits)
+            return menuItems.find(option => numericOptions.includes(option)) as I.allUnits
+          }
           return currentState.unit
         })(),
       }))

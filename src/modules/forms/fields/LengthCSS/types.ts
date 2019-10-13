@@ -54,7 +54,7 @@ export interface IFieldLengthCSS {
 
 export interface IFieldInputLengthCSS {
   value: string
-  setParentState?: (valuesFromInput: patternCorrectInputByGroups) => void
+  setParentState?: (valuesFromInput: IPatternCorrectInputByGroups) => void
 }
 
 export interface IFieldSelectLengthCSS {

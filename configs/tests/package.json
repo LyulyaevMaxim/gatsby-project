@@ -20,12 +20,12 @@
     "jest": "24.9.0",
     "jest-cli": "24.9.0",
     "jest-emotion": "10.0.17",
-    "react-test-renderer": "16.8.6",
+    "react-test-renderer": "16.10.2",
     "ts-jest": "24.1.0",
     "cypress": "3.4.1",
-    "start-server-and-test": "1.10.4",
+    "start-server-and-test": "1.10.5",
     "@testing-library/react": "9.3.0",
-    "@testing-library/jest-dom": "4.1.0",
+    "@testing-library/jest-dom": "4.1.2",
     "@testing-library/react-hooks": "2.0.3",
     "jest-styled-components": "7.0.0-beta.1"
   }
