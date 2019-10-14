@@ -1,4 +1,5 @@
 import React from 'react'
+import { css } from '@emotion/core'
 import * as I from './types'
 
 interface IInputState {
@@ -46,16 +47,16 @@ export const FieldInputLengthCSS: React.FC<I.IFieldInputLengthCSS> = React.memo(
 })
 
 const styles = {
-  input: `
+  input: css`
     border: 1px solid;
     &:focus {
       outline: none;
     }
   `,
-  valid: `
+  valid: css`
     border-color: green;
   `,
-  invalid: `
+  invalid: css`
     border-color: red;
   `,
 }
@@ -70,5 +71,26 @@ export const patterns = (() => {
   return {
     similarInput: new RegExp(`^([a-z]+|${numbersWithLetters})$`),
     correctInput: new RegExp(`^(${defaultValues}|${numbersWithUnits})$`),
+  }
+})()
+
+export const examplesForInputPatterns = (() => {
+  const someLengthKey = Object.keys(I.unitsOfLengthMeasure)[0],
+    someAdditionalKey = Object.keys(I.additionalUnitsOfMeasure),
+    someDefaultKey = Object.keys(I.defaultUnitsOfMeasure)[0]
+  return {
+    validForInput: ['1', '1.', '1.1', '1p', '1ppp', '-1.11pxx', 'xs'],
+    invalidForInput: ['a1', '1.x', `1${someLengthKey}1`, '-p'],
+    validForSaving: ['1', '1.1', `1${someLengthKey}`, `-1.11${someAdditionalKey}`, someDefaultKey],
+    invalidForSaving: [
+      `${someDefaultKey}1`,
+      `1.${someLengthKey}`,
+      `1${someLengthKey}1`,
+      '1.',
+      '1p',
+      `1${someLengthKey}${someLengthKey}`,
+      `-${someDefaultKey}`,
+      'nonExistKey',
+    ],
   }
 })()

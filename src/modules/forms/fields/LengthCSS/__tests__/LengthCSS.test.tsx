@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, fireEvent, waitForElement } from '@testing-library/react'
 import { FieldLengthCSS } from '../index'
-import { FieldInputLengthCSS, patterns } from '../input'
+import { FieldInputLengthCSS, patterns, examplesForInputPatterns } from '../input'
 import { FieldSelectLengthCSS } from '../select'
 import * as I from '../types'
 
@@ -11,11 +11,11 @@ const keysUnitsOfMeasure = {
   additional: Object.keys(I.additionalUnitsOfMeasure),
 }
 
-describe('FieldLengthCSS', () => {
+/*describe('FieldLengthCSS', () => {
   it('renders correctly', () => {
-    // const Field = render(<FieldLengthCSS  />)
+    const Field = render(<FieldLengthCSS  />)
   })
-})
+})*/
 
 /*describe('FieldInputLengthCSS', () => {
   it('must be invalid when has incorrect value', () => {
@@ -23,39 +23,28 @@ describe('FieldLengthCSS', () => {
   })
 })*/
 
-
 describe('Input patterns', () => {
-  const { similarInput, correctInput } = patterns,
-    someLengthKey = keysUnitsOfMeasure.length[0],
-    someAdditionalKey = keysUnitsOfMeasure.additional[0],
-    someDefaultKey = keysUnitsOfMeasure.default[0]
+  const { similarInput, correctInput } = patterns
 
   it('valid data at the time of input', () =>
-    ['1', '1.', '1.1', '1p', '1ppp', '-1.11pxx', 'xs'].forEach(inputtedValue =>
+    examplesForInputPatterns.validForInput.forEach(inputtedValue =>
       expect(similarInput.test(inputtedValue)).toBeTruthy()
     ))
 
   it('invalid data at the time of input', () =>
-    ['a1', '1.x', `1${someLengthKey}1`, '-p'].forEach(inputtedValue =>
+    examplesForInputPatterns.invalidForInput.forEach(inputtedValue =>
       expect(similarInput.test(inputtedValue)).toBeFalsy()
     ))
 
   it('valid data at the time of saving', () =>
-    ['1', '1.1', `1${someLengthKey}`, `-1.11${someAdditionalKey}`, someDefaultKey].forEach(inputtedValue =>
+    examplesForInputPatterns.validForSaving.forEach(inputtedValue =>
       expect(correctInput.test(inputtedValue)).toBeTruthy()
     ))
 
   it('invalid data at the time of saving', () =>
-    [
-      `${someDefaultKey}1`,
-      `1.${someLengthKey}`,
-      `1${someLengthKey}1`,
-      '1.',
-      '1p',
-      `1${someLengthKey}${someLengthKey}`,
-      `-${someDefaultKey}`,
-      'nonExistKey',
-    ].forEach(inputtedValue => expect(correctInput.test(inputtedValue)).toBeFalsy()))
+    examplesForInputPatterns.invalidForSaving.forEach(inputtedValue =>
+      expect(correctInput.test(inputtedValue)).toBeFalsy()
+    ))
 })
 
 describe('FieldSelectLengthCSS', () => {

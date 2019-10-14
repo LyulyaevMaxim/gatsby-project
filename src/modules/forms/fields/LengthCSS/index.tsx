@@ -71,8 +71,8 @@ FieldLengthCSS.defaultProps = {
 } as IDefaultProps
 
 const styles = {
-  container: `
-    display: flex;
+  container: css`
     align-items: center;
+    display: flex;
   `,
 }

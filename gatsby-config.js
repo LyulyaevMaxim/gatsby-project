@@ -29,7 +29,7 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-plugin-emotion',
     //although intended for SC, but help Emotion with a compact displaying in DevTools
-    'gatsby-plugin-styled-components',
+    // 'gatsby-plugin-styled-components',
     {
       resolve: 'gatsby-plugin-postcss',
       options: {

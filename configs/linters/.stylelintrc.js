@@ -20,7 +20,7 @@ module.exports = {
     'stylelint-high-performance-animation',
     'stylelint-no-unsupported-browser-features',
     'stylelint-color-format',
-    'stylelint-declaration-use-variable',
+    // 'stylelint-declaration-use-variable',
     // 'stylelint-group-selectors', // only easy cases :(
     'stylelint-at-rule-no-children',
   ],
@@ -41,9 +41,9 @@ module.exports = {
     'color-format/format': {
       format: 'hsl',
     },
-    'sh-waqar/declaration-use-variable': [
-      ['/color/', 'font-size' /*"z-index"*/, { ignoreValues: ['inherit', 'transparent', 'currentColor'] }],
-    ],
+    /*'sh-waqar/declaration-use-variable': [
+      ['/color/', 'font-size' /!*"z-index"*!/, { ignoreValues: ['inherit', 'transparent', 'currentColor'] }],
+    ],*/
     // 'plugin/stylelint-group-selectors': true,
     'aditayvm/at-rule-no-children': [{ severity: 'warning' }],
     'order/order': ['custom-properties', 'dollar-variables', 'declarations', 'at-rules', 'rules'],

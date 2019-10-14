@@ -37,8 +37,8 @@ export const numericUnits = {
     ...additionalUnitsOfMeasure,
   },
   allUnits = {
-    ...numericUnits,
     ...defaultUnitsOfMeasure,
+    ...numericUnits,
   }
 
 export type allUnits =
