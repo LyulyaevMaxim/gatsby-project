@@ -3,7 +3,9 @@ import * as I from './types'
 
 export const FieldSelectLengthCSS: React.FC<I.IFieldSelectLengthCSS> = React.memo(props => {
   const { menuItems } = props,
-    onChange = React.useCallback(event => props.setParentState({ unit: event.target.value /*as I.allUnits*/ }), [])
+    onChange = React.useCallback(event => {
+      if (props.setParentState) props.setParentState({ unit: event.target.value })
+    }, [])
 
   return (
     <select data-testid="field-lengthCSS-select" value={props.value} onChange={onChange}>

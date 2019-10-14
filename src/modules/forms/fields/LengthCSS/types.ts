@@ -60,7 +60,7 @@ export interface IFieldInputLengthCSS {
 export interface IFieldSelectLengthCSS {
   menuItems: Array<allUnits>
   value: allUnits
-  setParentState: (valuesFromSelect: { unit: allUnits }) => void
+  setParentState?: (valuesFromSelect: { unit: allUnits }) => void
 }
 
 export interface IPatternCorrectInputByGroups {
