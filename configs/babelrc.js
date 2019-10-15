@@ -22,7 +22,7 @@ module.exports = {
     ],*/
     // ['@babel/preset-typescript', { isTSX: false, jsxPragma: 'React', allExtensions: false }],
     // '@babel/preset-react',
-    // '@emotion/babel-preset-css-prop',
+    '@emotion/babel-preset-css-prop',
   ],
   plugins: [
     //------------------------------------------STAGE 0------------------------------------------

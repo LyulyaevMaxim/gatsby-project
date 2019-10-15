@@ -42,6 +42,7 @@ export const FieldInputLengthCSS: React.FC<I.IFieldInputLengthCSS> = React.memo(
       onBlur={inputOnBlur}
       type="text"
       css={[styles.input, input.value && styles[input.isValid ? 'valid' : 'invalid']]}
+      data-is-valid={input.isValid}
     />
   )
 })
@@ -79,7 +80,7 @@ export const examplesForInputPatterns = (() => {
     someAdditionalKey = Object.keys(I.additionalUnitsOfMeasure),
     someDefaultKey = Object.keys(I.defaultUnitsOfMeasure)[0]
   return {
-    validForInput: ['1', '1.', '1.1', '1p', '1ppp', '-1.11pxx', 'xs'],
+    validForInput: ['1.', '1', '1.1', '1p', '1ppp', '-1.11pxx', 'xs'],
     invalidForInput: ['a1', '1.x', `1${someLengthKey}1`, '-p'],
     validForSaving: ['1', '1.1', `1${someLengthKey}`, `-1.11${someAdditionalKey}`, someDefaultKey],
     invalidForSaving: [

@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FieldLengthCSS renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    css="[object Object]"
+  >
+    <input
+      css="[object Object],[object Object]"
+      data-is-valid="true"
+      data-testid="field-lengthCSS-input"
+      type="text"
+      value="20"
+    />
+    <select
+      data-testid="field-lengthCSS-select"
+    >
+      <option
+        value="auto"
+      >
+        -
+      </option>
+      <option
+        value="px"
+      >
+        px
+      </option>
+      <option
+        value="%"
+      >
+        %
+      </option>
+      <option
+        value="rem"
+      >
+        rem
+      </option>
+      <option
+        value="vw"
+      >
+        vw
+      </option>
+    </select>
+  </div>
+</DocumentFragment>
+`;
