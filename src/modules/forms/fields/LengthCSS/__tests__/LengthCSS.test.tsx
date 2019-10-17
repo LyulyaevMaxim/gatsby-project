@@ -5,6 +5,8 @@ import { FieldInputLengthCSS, patterns, examplesForInputPatterns } from '../inpu
 import { FieldSelectLengthCSS } from '../select'
 import * as I from '../types'
 
+jest.mock('../index', () => require('../LengthCSS'))
+
 const keysUnitsOfMeasure = {
   default: Object.keys(I.defaultUnitsOfMeasure),
   length: Object.keys(I.unitsOfLengthMeasure),
@@ -62,16 +64,15 @@ describe('FieldLengthCSS', () => {
 
     // when select was set to <default value> and input had a non default value then input will set default value too
     Field.rerender(<FieldLengthCSS menu-items={menuItems} value={someNumber} />)
-    fireEvent.change(Field.getByTestId("field-lengthCSS-select"), { target: { value: someDefaultValue } })
+    fireEvent.change(Field.getByTestId('field-lengthCSS-select'), { target: { value: someDefaultValue } })
     expect((Field.getByTestId('field-lengthCSS-input') as any).value).toBe(someDefaultValue)
 
     // when select was set to <numeric value> and input has a default value then input will reset
     Field.rerender(<FieldLengthCSS menu-items={menuItems} value={someDefaultValue} />)
-    fireEvent.change(Field.getByTestId("field-lengthCSS-select"), { target: { value: 'px' } })
+    fireEvent.change(Field.getByTestId('field-lengthCSS-select'), { target: { value: 'px' } })
     expect((Field.getByTestId('field-lengthCSS-input') as any).value).toBe('')
   })
 })
-
 
 describe('FieldInputLengthCSS', () => {
   it('when input value must be invalid or valid', () => {
@@ -103,7 +104,6 @@ describe('FieldInputLengthCSS', () => {
   })
 })
 
-
 describe('Input patterns', () => {
   const { similarInput, correctInput } = patterns
 
@@ -127,7 +127,6 @@ describe('Input patterns', () => {
       expect(correctInput.test(inputtedValue)).toBeFalsy()
     ))
 })
-
 
 describe('FieldSelectLengthCSS', () => {
   const createSelect = props => render(<FieldSelectLengthCSS {...props} />),

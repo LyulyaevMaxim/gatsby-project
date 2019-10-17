@@ -43,6 +43,7 @@
     "no-extra-semicolon": false,
     "no-use-of-empty-return-value": false,
     "no-suspicious-comment": false,
+    "use-named-parameter": false,
     "react-a11y-role-has-required-aria-props": false,
     "react-a11y-no-onchange": false,
     "mocha-no-side-effect-code": false

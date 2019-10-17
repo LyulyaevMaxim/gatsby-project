@@ -12,7 +12,7 @@ export default function IndexPage() {
   return (
     <>
       <h1>Title</h1>
-      <FieldLengthCSS {...props} />
+      <FieldLengthCSS {...props} fallback={<div>Custom Loading...</div>} />
     </>
   )
 }

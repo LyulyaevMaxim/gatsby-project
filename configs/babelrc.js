@@ -25,6 +25,7 @@ module.exports = {
     '@emotion/babel-preset-css-prop',
   ],
   plugins: [
+    '@loadable/babel-plugin',
     //------------------------------------------STAGE 0------------------------------------------
     /* obj::func => func.bind(obj)                ::obj.func      => obj.func.bind(obj)
        obj::func(val) => func.call(obj, val)      ::obj.func(val) => obj.func.call(obj, val) */
