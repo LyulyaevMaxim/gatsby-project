@@ -1,6 +1,6 @@
-/* https://www.gatsbyjs.org/docs/gatsby-config/ */
+// https://www.gatsbyjs.org/docs/gatsby-config/
 import env from 'dotenv'
-import { siteMetadata } from './static/constants/index.ts'
+import { siteMetadata } from './static/constants'
 
 env.config({ path: `.env.${process.env.NODE_ENV}` })
 
@@ -24,7 +24,7 @@ module.exports = {
     'gatsby-plugin-transition-link',
 
     'gatsby-transformer-json',
-    /* images: optimizations and GraphQL */
+    // images: optimizations and GraphQL
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     'gatsby-plugin-emotion',
@@ -38,7 +38,7 @@ module.exports = {
       },
     },
     'gatsby-plugin-sitemap',
-    /*---------------- for PWA ----------------*/
+    //---------------- for PWA ----------------
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -51,6 +51,6 @@ module.exports = {
         display: 'minimal-ui',
       },
     },
-    // 'gatsby-plugin-offline',
+    process.env.isProduction && 'gatsby-plugin-offline',
   ],
 }

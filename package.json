@@ -23,8 +23,8 @@
     "test:e2e": "START_SERVER_AND_TEST_INSECURE=1 start-server-and-test develop https://localhost:8000 cy:open",
     "test:e2e-ci": "START_SERVER_AND_TEST_INSECURE=1 start-server-and-test develop https://localhost:8000 cy:run",
     "format": "prettier --write *.{html,tsx,ts,jsx,js,json,css,pcss,svg}",
-    "lint:js": "eslint --fix src/ --ext .js,.jsx && tslint --project './tsconfig.json' --config './configs/linters/tslint.json' './src/**/*.{ts,tsx}' && tsc --noEmit",
-    "lint:css": "stylelint 'src/**/*.{css,pcss}' & cross-env withJS=true stylelint 'src/**/*.{tsx,jsx}'",
+    "lint:js": "eslint --fix './src/**/*.{js,jsx}' & tslint --project './tsconfig.json' --config './configs/linters/tslint.json' './src/**/*.{ts,tsx}' & tsc --noEmit",
+    "lint:css": "stylelint './src/**/*.{css,pcss}' & cross-env withJS=true stylelint './src/**/*.{tsx,jsx}'",
     "build": "yarn gatsbyES build",
     "serve": "yarn gatsbyES serve",
     "deploy::netlify": "npx netlify-cli deploy",
@@ -32,7 +32,7 @@
     "deploy::github": "yarn build --prefix-paths && gh-pages -d public",
     "deploy::docker": "yarn build && yarn version-increment && sudo docker build -t lyulyaevma/gatsby-project:$(cat version.num) . && sudo docker push lyulyaevma/gatsby-project:$(cat version.num)",
     "upgrade-packages": "node ./configs/upgradePackages.js",
-    "gatsbyES": "node -r esm ./node_modules/.bin/gatsby",
+    "gatsbyES": "yarn ts-node-dev -r esm ./node_modules/.bin/gatsby",
     "version-increment": "perl -i -pe 's/^((\\d+\\.)*)(\\d+)(.*)$/$1.($3+1).$4/e' < version.num version.num",
     "cy:open": "cypress open",
     "cy:run": "cypress run"
@@ -74,7 +74,9 @@
     "gatsby-source-mongodb": "2.1.18",
     "gatsby-transformer-json": "2.2.15",
     "gatsby-transformer-sharp": "2.2.23",
-    "typescript": "3.6.4"
+    "typescript": "3.6.4",
+    "ts-node-dev": "1.0.0-pre.43",
+    "@types/dotenv": "6.1.1"
   },
   "optionalDependencies": {
     "gh-pages": "2.1.1",

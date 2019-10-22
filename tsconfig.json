@@ -13,7 +13,6 @@
       "*": ["./src/*"],
       "static/*": ["./static/*"]
     },
-
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -33,10 +32,9 @@
     "strictNullChecks": true,
     "importHelpers": true,
     "skipLibCheck": true,
-
+    "noImplicitAny": true,
     "noUnusedParameters": false,
     "noUnusedLocals": false,
-    "noImplicitAny": false,
     "allowJs": false,
     "checkJs": false,
     "isolatedModules": false

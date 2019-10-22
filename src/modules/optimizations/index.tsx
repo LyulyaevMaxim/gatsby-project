@@ -31,11 +31,15 @@ export function getModuleAsync({
       })
     },
     {
-      fallback: <div>Loading...</div>,
+      fallback: <Loader />,
     }
   )
 
   if (withPreload) AsyncComponent.preload()
 
   return AsyncComponent
+}
+
+const Loader: React.FC = () => {
+  return <div>Loading...</div>
 }

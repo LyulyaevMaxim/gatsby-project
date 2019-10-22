@@ -129,10 +129,10 @@ describe('Input patterns', () => {
 })
 
 describe('FieldSelectLengthCSS', () => {
-  const createSelect = props => render(<FieldSelectLengthCSS {...props} />),
+  const createSelect = (props: I.IFieldSelectLengthCSS) => render(<FieldSelectLengthCSS {...props} />),
     menuItems = [keysUnitsOfMeasure.length[0], keysUnitsOfMeasure.default[0]] as Array<I.allUnits>,
     nonExistValue = keysUnitsOfMeasure.additional[0] as I.allUnits,
-    getSelectOptions = ({ container }) => container.getElementsByTagName('option')
+    getSelectOptions = ({ container }: { container: HTMLElement }) => container.getElementsByTagName('option')
 
   it(`if 'value' does not include in 'menuItems' then it added in options select`, () => {
     const { container } = createSelect({ menuItems, value: nonExistValue }),

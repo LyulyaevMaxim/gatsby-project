@@ -1,7 +1,9 @@
 import React from 'react'
-import { getModuleAsync } from '../../../optimizations/index'
+import { LoadableComponent } from '@loadable/component'
+import { getModuleAsync } from 'modules/optimizations/index'
+import * as I from './types'
 
-export const FieldLengthCSS = getModuleAsync({
+export const FieldLengthCSS: LoadableComponent<I.IFieldLengthCSS> = getModuleAsync({
   moduleName: 'FieldLengthCSS',
   moduleImport: () => import(/* webpackChunkName: "FieldLengthCSS", webpackPrefetch: true */ `./LengthCSS`),
 })

@@ -125,4 +125,4 @@ const styles = {
       }
     `,
   },
-  onChange = newValue => console.log('to parent component', newValue)
+  onChange: I.IFieldLengthCSS['onChange'] = newValue => console.log('to parent component', newValue)
