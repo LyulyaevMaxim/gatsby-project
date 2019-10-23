@@ -32,7 +32,7 @@
     "deploy::github": "yarn build --prefix-paths && gh-pages -d public",
     "deploy::docker": "yarn build && yarn version-increment && sudo docker build -t lyulyaevma/gatsby-project:$(cat version.num) . && sudo docker push lyulyaevma/gatsby-project:$(cat version.num)",
     "upgrade-packages": "node ./configs/upgradePackages.js",
-    "gatsbyTS": "ts-node-dev ./node_modules/.bin/gatsby",
+    "gatsbyTS": "ts-node ./node_modules/.bin/gatsby",
     "version-increment": "perl -i -pe 's/^((\\d+\\.)*)(\\d+)(.*)$/$1.($3+1).$4/e' < version.num version.num",
     "cy:open": "cypress open",
     "cy:run": "cypress run"
@@ -74,7 +74,7 @@
     "gatsby-transformer-json": "2.2.15",
     "gatsby-transformer-sharp": "2.3.0",
     "typescript": "3.6.4",
-    "ts-node-dev": "1.0.0-pre.43",
+    "ts-node": "8.4.1",
     "@types/dotenv": "6.1.1"
   },
   "optionalDependencies": {
