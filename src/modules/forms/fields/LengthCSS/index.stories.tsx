@@ -5,7 +5,7 @@ import { FieldLengthCSS } from './index'
 import * as I from './types'
 import { examplesForInputPatterns } from './input'
 
-storiesOf(`Modules/Forms/Fields/LengthCSS`, module).add(`default`, () => (
+storiesOf(`Modules/Forms/Fields`, module).add(`LengthCSS`, () => (
   <>
     <h1>Компонент для редактирования значения CSS свойства</h1>
     <p>Состоит из:</p>

@@ -75,23 +75,27 @@ describe('FieldLengthCSS', () => {
 })
 
 describe('FieldInputLengthCSS', () => {
-  it('when input value must be invalid or valid', () => {
+  it('during input need reset validation status and only valid value must be pass', () => {
     const Input = render(<FieldInputLengthCSS value="" />)
-    expect(Input.getByTestId('field-lengthCSS-input').dataset.isValid).toBeUndefined()
+    expect(Input.getByTestId('field-lengthCSS-input').dataset.isValid).toBe('null')
     ;[
-      { newInputValue: examplesForInputPatterns.invalidForInput[0], toBeValue: 'false' },
-      { newInputValue: examplesForInputPatterns.validForInput[0], toBeValue: 'true' },
+      { newInputValue: examplesForInputPatterns.invalidForInput[0], toBeValue: '' },
+      {
+        newInputValue: examplesForInputPatterns.validForInput[0],
+        toBeValue: examplesForInputPatterns.validForInput[0],
+      },
     ].forEach(({ newInputValue, toBeValue }) => {
       fireEvent.input(Input.getByTestId('field-lengthCSS-input'), {
         target: { value: newInputValue },
       })
-      expect(Input.getByTestId('field-lengthCSS-input').dataset.isValid).toBe(toBeValue)
+      expect((Input.getByTestId('field-lengthCSS-input') as any).value).toBe(toBeValue)
+      expect(Input.getByTestId('field-lengthCSS-input').dataset.isValid).toBe('null')
     })
   })
 
   it('when saving value must be invalid or valid', () => {
     const Input = render(<FieldInputLengthCSS value="" />)
-    expect(Input.getByTestId('field-lengthCSS-input').dataset.isValid).toBeUndefined()
+    expect(Input.getByTestId('field-lengthCSS-input').dataset.isValid).toBe('null')
     ;[
       { newInputValue: examplesForInputPatterns.invalidForSaving[0], toBeValue: 'false' },
       { newInputValue: examplesForInputPatterns.validForSaving[0], toBeValue: 'true' },

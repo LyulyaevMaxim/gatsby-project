@@ -14,12 +14,13 @@ export const FieldInputLengthCSS: React.FC<I.IFieldInputLengthCSS> = React.memo(
     }),
     inputOnChange = React.useCallback(event => {
       const elValue = event.target.value
-      setInput(state => ({ ...state, value: elValue, isValid: patterns.similarInput.test(elValue) }))
+      if (!elValue || patterns.similarInput.test(elValue))
+        setInput(state => ({ ...state, value: elValue, isValid: null }))
     }, []),
     inputOnBlur = React.useCallback(event => {
       const elValue = event.target.value,
         matches = patterns.correctInput.exec(elValue)
-      let newState = { isValid: false, value: elValue }
+      let newState = { isValid: elValue ? false : null, value: elValue }
 
       if (matches) {
         const { defaultValue, number, unit }: I.IPatternCorrectInputByGroups = matches.groups || {}
@@ -41,8 +42,8 @@ export const FieldInputLengthCSS: React.FC<I.IFieldInputLengthCSS> = React.memo(
       onChange={inputOnChange}
       onBlur={inputOnBlur}
       type="text"
-      css={[styles.input, input.value && styles[input.isValid ? 'valid' : 'invalid']]}
-      data-is-valid={input.isValid}
+      css={[styles.input, input.isValid !== null && input.value && styles[input.isValid ? 'valid' : 'invalid']]}
+      data-is-valid={String(input.isValid)}
     />
   )
 })
