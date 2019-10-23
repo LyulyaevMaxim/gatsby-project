@@ -1,18 +1,19 @@
 import React from 'react'
 import { css } from '@emotion/core'
 import { get } from 'lodash'
+import { hot } from 'react-hot-loader/root'
 import * as I from './types'
 import { FieldInputLengthCSS, patterns } from './input'
 import { FieldSelectLengthCSS } from './select'
 
-export const FieldLengthCSS = (props: I.IFieldLengthCSS & IDefaultProps) => {
+const FieldLengthCSS = (props: I.IFieldLengthCSS & IDefaultProps) => {
   const { 'menu-items': menuItems } = props,
     [state, setState] = React.useState(
       (() => {
         const { value } = props
         if (!value) return { value: '', unit: menuItems[0] }
         const { defaultValue, number, unit }: I.IPatternCorrectInputByGroups =
-        get(patterns.correctInput.exec(value), 'groups') || {}
+          get(patterns.correctInput.exec(value), 'groups') || {}
         return { value: number || defaultValue || value, unit: unit || menuItems[0] }
       })()
     ),
@@ -74,3 +75,6 @@ const styles = {
     display: flex;
   `,
 }
+
+const withHMR = hot(FieldLengthCSS)
+export { withHMR as FieldLengthCSS }

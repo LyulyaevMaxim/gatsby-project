@@ -5,7 +5,7 @@
     "jsx": "react",
     "moduleResolution": "node",
     "target": "esnext",
-    "module": "esnext",
+    "module": "commonjs",
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
     "baseUrl": "./",
     "types": ["jest", "node"],
