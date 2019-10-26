@@ -20,7 +20,7 @@ module.exports = {
       },
     },
     'gatsby-plugin-typescript-checker',
-    'gatsby-plugin-react-helmet',
+    '@rhysforyou/gatsby-plugin-react-helmet-async',
     'gatsby-plugin-transition-link',
 
     'gatsby-transformer-json',
