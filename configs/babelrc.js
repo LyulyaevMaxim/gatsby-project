@@ -6,22 +6,19 @@ const path = require('path'),
 
 module.exports = {
   presets: [
-    ['babel-preset-gatsby', { targets: { browsers: require(`${root}/package.json`).browserslist } }],
-    /*[
-      '@babel/preset-env',
-      !isTest && {
+    [
+      'babel-preset-gatsby',
+      {
         targets: { browsers: require(`${root}/package.json`).browserslist },
-        modules: false,
+        /*modules: false,
         loose: true,
         spec: true,
         useBuiltIns: 'usage',
         corejs: 3,
         forceAllTransforms: true,
-        debug: false,
+        debug: false,*/
       },
-    ],*/
-    // ['@babel/preset-typescript', { isTSX: false, jsxPragma: 'React', allExtensions: false }],
-    // '@babel/preset-react',
+    ],
     '@emotion/babel-preset-css-prop',
   ],
   plugins: [
@@ -37,7 +34,7 @@ module.exports = {
     ['@babel/plugin-proposal-optional-chaining', { loose: false }],
 
     /* obj.a ?? 0 is ideal check on null || undefined */
-    // ['@babel/plugin-proposal-nullish-coalescing-operator', { loose: false }],
+    ['@babel/plugin-proposal-nullish-coalescing-operator', { loose: false }],
 
     // ['@babel/plugin-proposal-pipeline-operator', { proposal: 'minimal' }], //ESLint has a problem
 

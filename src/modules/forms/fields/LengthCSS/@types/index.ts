@@ -1,3 +1,4 @@
+//namespace NFieldLengthCSS
 export enum defaultUnitsOfMeasure {
   'auto' = '-',
   // 'initial' = '-',

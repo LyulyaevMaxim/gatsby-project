@@ -2,44 +2,45 @@ import React from 'react'
 import { css } from '@emotion/core'
 import { get } from 'lodash'
 import { hot } from 'react-hot-loader/root'
-import * as I from './types'
+import * as NFieldLengthCSS  from './@types'
 import { FieldInputLengthCSS, patterns } from './input'
 import { FieldSelectLengthCSS } from './select'
 
-const FieldLengthCSS = (props: I.IFieldLengthCSS & IDefaultProps) => {
+const FieldLengthCSS = (props: NFieldLengthCSS.IFieldLengthCSS & IDefaultProps) => {
   const { 'menu-items': menuItems } = props,
     [state, setState] = React.useState(
       (() => {
         const { value } = props
         if (!value) return { value: '', unit: menuItems[0] }
-        const { defaultValue, number, unit }: I.IPatternCorrectInputByGroups =
+        const { defaultValue, number, unit }: NFieldLengthCSS.IPatternCorrectInputByGroups =
           get(patterns.correctInput.exec(value), 'groups') || {}
+        // patterns.correctInput.exec(value)?.groups ?? {}
         return { value: number || defaultValue || value, unit: unit || menuItems[0] }
       })()
     ),
     prevState = React.useRef(state),
-    setStateFromInput = React.useCallback(({ defaultValue, number, unit }: I.IPatternCorrectInputByGroups) => {
+    setStateFromInput = React.useCallback(({ defaultValue, number, unit }: NFieldLengthCSS.IPatternCorrectInputByGroups) => {
       setState(currentState => ({
         ...currentState,
         value: number || defaultValue || currentState.value,
         unit: (() => {
           if (unit) return unit
-          if (defaultValue) return defaultValue as I.allUnits
-          if (number && currentState.unit in I.defaultUnitsOfMeasure) {
-            const numericOptions = Object.keys(I.numericUnits)
-            return menuItems.find(option => numericOptions.includes(option)) as I.allUnits
+          if (defaultValue) return defaultValue as NFieldLengthCSS.allUnits
+          if (number && currentState.unit in NFieldLengthCSS.defaultUnitsOfMeasure) {
+            const numericOptions = Object.keys(NFieldLengthCSS.numericUnits)
+            return menuItems.find(option => numericOptions.includes(option)) as NFieldLengthCSS.allUnits
           }
           return currentState.unit
         })(),
       }))
     }, []),
-    setStateFromSelect = React.useCallback(({ unit }: { unit: I.allUnits }) => {
+    setStateFromSelect = React.useCallback(({ unit }: { unit: NFieldLengthCSS.allUnits }) => {
       setState(currentState => ({
         ...currentState,
         unit,
         value: (() => {
-          if (unit in I.defaultUnitsOfMeasure) return unit
-          if (unit in I.numericUnits && !+currentState.value) return ''
+          if (unit in NFieldLengthCSS.defaultUnitsOfMeasure) return unit
+          if (unit in NFieldLengthCSS.numericUnits && !+currentState.value) return ''
           return currentState.value
         })(),
       }))
@@ -62,11 +63,11 @@ const FieldLengthCSS = (props: I.IFieldLengthCSS & IDefaultProps) => {
 }
 
 interface IDefaultProps {
-  ['menu-items']: Array<I.allUnits>
+  ['menu-items']: Array<NFieldLengthCSS.allUnits>
 }
 
 FieldLengthCSS.defaultProps = {
-  'menu-items': Object.keys(I.allUnits),
+  'menu-items': Object.keys(NFieldLengthCSS.allUnits),
 } as IDefaultProps
 
 const styles = {

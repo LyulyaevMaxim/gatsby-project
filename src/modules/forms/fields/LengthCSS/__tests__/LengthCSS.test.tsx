@@ -1,20 +1,21 @@
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
+// import cases from "jest-in-case";
+import * as NFieldLengthCSS from '../@types'
 import { FieldLengthCSS } from '../index'
 import { FieldInputLengthCSS, patterns, examplesForInputPatterns } from '../input'
 import { FieldSelectLengthCSS } from '../select'
-import * as I from '../types'
 
 jest.mock('../index', () => require('../LengthCSS'))
 
 const keysUnitsOfMeasure = {
-  default: Object.keys(I.defaultUnitsOfMeasure),
-  length: Object.keys(I.unitsOfLengthMeasure),
-  additional: Object.keys(I.additionalUnitsOfMeasure),
+  default: Object.keys(NFieldLengthCSS.defaultUnitsOfMeasure),
+  length: Object.keys(NFieldLengthCSS.unitsOfLengthMeasure),
+  additional: Object.keys(NFieldLengthCSS.additionalUnitsOfMeasure),
 }
 
 describe('FieldLengthCSS', () => {
-  const menuItems = ['auto', 'px', '%', 'rem'] as Array<I.allUnits>,
+  const menuItems = ['auto', 'px', '%', 'rem'] as Array<NFieldLengthCSS.allUnits>,
     someNumber = '-12.678',
     someDefaultValue = keysUnitsOfMeasure.default[0],
     someLengthValue = keysUnitsOfMeasure.length[0]
@@ -26,7 +27,9 @@ describe('FieldLengthCSS', () => {
 
   it(`props "menu-items" must change amount displaying options select`, () => {
     const Field = render(<FieldLengthCSS />)
-    expect(Field.getByTestId('field-lengthCSS-select').children.length).toBe(Object.keys(I.allUnits).length)
+    expect(Field.getByTestId('field-lengthCSS-select').children.length).toBe(
+      Object.keys(NFieldLengthCSS.allUnits).length
+    )
 
     Field.rerender(<FieldLengthCSS menu-items={menuItems} />)
     expect(Field.getByTestId('field-lengthCSS-select').children.length).toBe(menuItems.length)
@@ -42,7 +45,7 @@ describe('FieldLengthCSS', () => {
       target: { value: someNumber },
     })
     expect((Field.getByTestId('field-lengthCSS-select') as any).value).toBe(
-      menuItems.find(option => Object.keys(I.numericUnits).includes(option))
+      menuItems.find(option => Object.keys(NFieldLengthCSS.numericUnits).includes(option))
     )
 
     /* when was input <number><unit of measure> then the input must be replaced 
@@ -133,9 +136,9 @@ describe('Input patterns', () => {
 })
 
 describe('FieldSelectLengthCSS', () => {
-  const createSelect = (props: I.IFieldSelectLengthCSS) => render(<FieldSelectLengthCSS {...props} />),
-    menuItems = [keysUnitsOfMeasure.length[0], keysUnitsOfMeasure.default[0]] as Array<I.allUnits>,
-    nonExistValue = keysUnitsOfMeasure.additional[0] as I.allUnits,
+  const createSelect = (props: NFieldLengthCSS.IFieldSelectLengthCSS) => render(<FieldSelectLengthCSS {...props} />),
+    menuItems = [keysUnitsOfMeasure.length[0], keysUnitsOfMeasure.default[0]] as Array<NFieldLengthCSS.allUnits>,
+    nonExistValue = keysUnitsOfMeasure.additional[0] as NFieldLengthCSS.allUnits,
     getSelectOptions = ({ container }: { container: HTMLElement }) => container.getElementsByTagName('option')
 
   it(`if 'value' does not include in 'menuItems' then it added in options select`, () => {

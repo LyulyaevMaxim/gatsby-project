@@ -1,10 +1,10 @@
 import React from 'react'
 import { FieldLengthCSS } from 'modules/forms/fields/LengthCSS'
-import * as I from 'modules/forms/fields/LengthCSS/types'
+import * as NFieldLengthCSS  from 'modules/forms/fields/LengthCSS/@types'
 
-const props: I.IFieldLengthCSS = {
+const props: NFieldLengthCSS.IFieldLengthCSS = {
   value: '20vw',
-  'menu-items': ['auto', 'px', '%', 'rem'] as Array<I.allUnits>,
+  'menu-items': ['auto', 'px', '%', 'rem'] as Array<NFieldLengthCSS.allUnits>,
   onChange: newValue => console.log('to parent component', newValue),
 }
 

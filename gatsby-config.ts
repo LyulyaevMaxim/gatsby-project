@@ -1,5 +1,5 @@
 // https://www.gatsbyjs.org/docs/gatsby-config/
-import env from 'dotenv'
+import * as env from 'dotenv'
 import { siteMetadata } from './static/constants'
 
 env.config({ path: `.env.${process.env.NODE_ENV}` })
@@ -52,5 +52,8 @@ module.exports = {
       },
     },
     process.env.isProduction && 'gatsby-plugin-offline',
+
+    //stubs
+    'gatsby-plugin-nullish-coalescing-operator'
   ],
 }

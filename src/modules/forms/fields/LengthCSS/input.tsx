@@ -1,13 +1,13 @@
 import React from 'react'
 import { css } from '@emotion/core'
-import * as I from './types'
+import * as NFieldLengthCSS  from './@types'
 
 interface IInputState {
   value: string
   isValid: null | boolean
 }
 
-export const FieldInputLengthCSS: React.FC<I.IFieldInputLengthCSS> = React.memo(props => {
+export const FieldInputLengthCSS: React.FC<NFieldLengthCSS.IFieldInputLengthCSS> = React.memo(props => {
   const [input, setInput] = React.useState<IInputState>({
       value: props.value,
       isValid: props.value ? patterns.correctInput.test(props.value) : null,
@@ -23,7 +23,7 @@ export const FieldInputLengthCSS: React.FC<I.IFieldInputLengthCSS> = React.memo(
       let newState = { isValid: elValue ? false : null, value: elValue }
 
       if (matches) {
-        const { defaultValue, number, unit }: I.IPatternCorrectInputByGroups = matches.groups || {}
+        const { defaultValue, number, unit }: NFieldLengthCSS.IPatternCorrectInputByGroups = matches.groups || {}
         newState = { isValid: true, value: number || defaultValue }
         if (typeof props.setParentState === 'function') props.setParentState({ defaultValue, number, unit })
       }
@@ -64,11 +64,11 @@ const styles = {
 }
 
 export const patterns = (() => {
-  const defaultValues = `(?<defaultValue>${Object.keys(I.defaultUnitsOfMeasure).join('|')})`,
+  const defaultValues = `(?<defaultValue>${Object.keys(NFieldLengthCSS.defaultUnitsOfMeasure).join('|')})`,
     //similar to correct: 1, 1., 1.1, 1p, 1ppp
     numbersWithLetters = `[-]?\\d+((\\.?(\\d+[a-z%]*)?)|[a-z%]*)`,
     //only correct: 1, 1.1, 1px
-    numbersWithUnits = `((?<number>[-]?(\\d*\\.)?\\d+)(?<unit>${Object.keys(I.numericUnits).join('|')})?)`
+    numbersWithUnits = `((?<number>[-]?(\\d*\\.)?\\d+)(?<unit>${Object.keys(NFieldLengthCSS.numericUnits).join('|')})?)`
 
   return {
     similarInput: new RegExp(`^([a-z]+|${numbersWithLetters})$`),
@@ -77,9 +77,9 @@ export const patterns = (() => {
 })()
 
 export const examplesForInputPatterns = (() => {
-  const someLengthKey = Object.keys(I.unitsOfLengthMeasure)[0],
-    someAdditionalKey = Object.keys(I.additionalUnitsOfMeasure),
-    someDefaultKey = Object.keys(I.defaultUnitsOfMeasure)[0]
+  const someLengthKey = Object.keys(NFieldLengthCSS.unitsOfLengthMeasure)[0],
+    someAdditionalKey = Object.keys(NFieldLengthCSS.additionalUnitsOfMeasure),
+    someDefaultKey = Object.keys(NFieldLengthCSS.defaultUnitsOfMeasure)[0]
   return {
     validForInput: ['1.', '1', '1.1', '1p', '1ppp', '-1.11pxx', 'xs'],
     invalidForInput: ['a1', '1.x', `1${someLengthKey}1`, '-p'],

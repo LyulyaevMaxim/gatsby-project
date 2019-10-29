@@ -18,7 +18,7 @@ export function getModuleAsync({
   minDelay = 300,
   maxTimeout = 3000,
   withPreload = false,
-  withSSR = true,
+  // withSSR = true,
 }: IGetAsyncModule) {
   const AsyncComponent = loadable(
     componentProps => {

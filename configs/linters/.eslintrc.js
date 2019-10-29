@@ -2,11 +2,12 @@ const path = require('path'),
   root = path.resolve(__dirname, '../..')
 
 module.exports = {
-  parser: '@typescript-eslint/parser',
+  // parser: '@typescript-eslint/parser',
   env: {
     browser: true,
-    node: true,
+    // node: true,
     'cypress/globals': true,
+    'jest/globals': true,
   },
   globals: {
     graphql: true,
@@ -15,8 +16,10 @@ module.exports = {
     ecmaVersion: 2019,
     // project: `${root}/tsconfig.json`,
     // tsconfigRootDir: root,
+    // sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
+      // modules: true,
     },
   },
   plugins: [
@@ -36,6 +39,7 @@ module.exports = {
     'i18next',
     'jest',
     'cypress',
+    'chai-friendly',
     'prettier',
   ],
   extends: [
@@ -92,6 +96,11 @@ module.exports = {
     'import/no-extraneous-dependencies': 0, //because of Yarn Workspaces
     'import/prefer-default-export': 0,
 
+    'cypress/no-assigning-return-values': 'error',
+    'cypress/no-unnecessary-waiting': 'error',
+    'cypress/assertion-before-screenshot': 'warn',
+    'no-unused-expressions': 0,
+    'chai-friendly/no-unused-expressions': 2,
     // '@typescript-eslint/no-use-before-define': 0,
     // '@typescript-eslint/interface-name-prefix': 0,
 
@@ -156,8 +165,8 @@ module.exports = {
         },
       },*/
       node: {
-        paths: [`${root}/src`],
-        extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
+        paths: [`${root}/src`, `${root}/cypress`],
+        extensions: [/*'.tsx', '.ts', */'.jsx', '.js', '.json'],
       },
     },
     react: {

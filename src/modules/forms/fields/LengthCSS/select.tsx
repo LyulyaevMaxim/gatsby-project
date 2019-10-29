@@ -1,7 +1,7 @@
 import React from 'react'
-import * as I from './types'
+import * as NFieldLengthCSS  from './@types'
 
-export const FieldSelectLengthCSS: React.FC<I.IFieldSelectLengthCSS> = React.memo(props => {
+export const FieldSelectLengthCSS: React.FC<NFieldLengthCSS.IFieldSelectLengthCSS> = React.memo(props => {
   const { menuItems } = props,
     onChange = React.useCallback(event => {
       if (props.setParentState) props.setParentState({ unit: event.target.value })
@@ -9,10 +9,10 @@ export const FieldSelectLengthCSS: React.FC<I.IFieldSelectLengthCSS> = React.mem
 
   return (
     <select data-testid="field-lengthCSS-select" value={props.value} onChange={onChange}>
-      {([...menuItems, !menuItems.includes(props.value) && props.value].filter(Boolean) as Array<I.allUnits>).map(
+      {([...menuItems, !menuItems.includes(props.value) && props.value].filter(Boolean) as Array<NFieldLengthCSS.allUnits>).map(
         currentOption => (
           <option value={currentOption} key={`option-${currentOption}`}>
-            {I.allUnits[currentOption]}
+            {NFieldLengthCSS.allUnits[currentOption]}
           </option>
         )
       )}

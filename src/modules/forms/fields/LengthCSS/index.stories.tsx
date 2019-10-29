@@ -1,8 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { css } from '@emotion/core'
+import * as NFieldLengthCSS  from './@types'
 import { FieldLengthCSS } from './index'
-import * as I from './types'
 import { examplesForInputPatterns } from './input'
 
 storiesOf(`Modules/Forms/Fields`, module).add(`LengthCSS`, () => (
@@ -61,17 +61,17 @@ storiesOf(`Modules/Forms/Fields`, module).add(`LengthCSS`, () => (
                 <b>число</b> - любое число (-1, 0, 1.6666)
                 <br />
                 <br />
-                <b>единица измерения</b> - {Object.keys(I.numericUnits).join(', ')}
+                <b>единица измерения</b> - {Object.keys(NFieldLengthCSS.numericUnits).join(', ')}
                 <br />
                 <br />
-                <b>предопределённое значение</b> - {Object.keys(I.defaultUnitsOfMeasure).join(', ')}
+                <b>предопределённое значение</b> - {Object.keys(NFieldLengthCSS.defaultUnitsOfMeasure).join(', ')}
               </>
             ),
             howUse: 'Задаёт значение компонента',
           },
           {
             property: 'menu-items',
-            values: Object.keys(I.allUnits).join(', '),
+            values: Object.keys(NFieldLengthCSS.allUnits).join(', '),
             howUse: 'Задаёт список отображаемых в select опций',
           },
           {
@@ -125,4 +125,4 @@ const styles = {
       }
     `,
   },
-  onChange: I.IFieldLengthCSS['onChange'] = newValue => console.log('to parent component', newValue)
+  onChange: NFieldLengthCSS.IFieldLengthCSS['onChange'] = newValue => console.log('to parent component', newValue)
