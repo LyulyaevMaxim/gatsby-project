@@ -54,6 +54,6 @@ module.exports = {
     process.env.isProduction && 'gatsby-plugin-offline',
 
     //stubs
-    'gatsby-plugin-nullish-coalescing-operator'
+    'gatsby-plugin-nullish-coalescing-operator',
   ],
 }

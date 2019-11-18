@@ -2,7 +2,7 @@ import React from 'react'
 import { css } from '@emotion/core'
 import { get } from 'lodash'
 import { hot } from 'react-hot-loader/root'
-import * as NFieldLengthCSS  from './@types'
+import * as NFieldLengthCSS from './@types'
 import { FieldInputLengthCSS, patterns } from './input'
 import { FieldSelectLengthCSS } from './select'
 
@@ -19,21 +19,24 @@ const FieldLengthCSS = (props: NFieldLengthCSS.IFieldLengthCSS & IDefaultProps) 
       })()
     ),
     prevState = React.useRef(state),
-    setStateFromInput = React.useCallback(({ defaultValue, number, unit }: NFieldLengthCSS.IPatternCorrectInputByGroups) => {
-      setState(currentState => ({
-        ...currentState,
-        value: number || defaultValue || currentState.value,
-        unit: (() => {
-          if (unit) return unit
-          if (defaultValue) return defaultValue as NFieldLengthCSS.allUnits
-          if (number && currentState.unit in NFieldLengthCSS.defaultUnitsOfMeasure) {
-            const numericOptions = Object.keys(NFieldLengthCSS.numericUnits)
-            return menuItems.find(option => numericOptions.includes(option)) as NFieldLengthCSS.allUnits
-          }
-          return currentState.unit
-        })(),
-      }))
-    }, []),
+    setStateFromInput = React.useCallback(
+      ({ defaultValue, number, unit }: NFieldLengthCSS.IPatternCorrectInputByGroups) => {
+        setState(currentState => ({
+          ...currentState,
+          value: number || defaultValue || currentState.value,
+          unit: (() => {
+            if (unit) return unit
+            if (defaultValue) return defaultValue as NFieldLengthCSS.allUnits
+            if (number && currentState.unit in NFieldLengthCSS.defaultUnitsOfMeasure) {
+              const numericOptions = Object.keys(NFieldLengthCSS.numericUnits)
+              return menuItems.find(option => numericOptions.includes(option)) as NFieldLengthCSS.allUnits
+            }
+            return currentState.unit
+          })(),
+        }))
+      },
+      []
+    ),
     setStateFromSelect = React.useCallback(({ unit }: { unit: NFieldLengthCSS.allUnits }) => {
       setState(currentState => ({
         ...currentState,
@@ -72,8 +75,10 @@ FieldLengthCSS.defaultProps = {
 
 const styles = {
   container: css`
-    align-items: center;
-    display: flex;
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-gap: 8px;
+    grid-template-columns: repeat(auto-fit, minmax(auto, 200px));
   `,
 }
 

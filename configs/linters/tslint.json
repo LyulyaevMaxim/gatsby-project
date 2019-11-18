@@ -45,7 +45,8 @@
     "use-named-parameter": false,
     "react-a11y-role-has-required-aria-props": false,
     "react-a11y-no-onchange": false,
-    "mocha-no-side-effect-code": false
+    "mocha-no-side-effect-code": false,
+    "prefer-type-cast": false
   },
   "rulesDirectory": ["tslint-plugin-prettier"],
   "linterOptions": {

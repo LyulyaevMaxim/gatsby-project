@@ -1,6 +1,6 @@
 import React from 'react'
 import { FieldLengthCSS } from 'modules/forms/fields/LengthCSS'
-import * as NFieldLengthCSS  from 'modules/forms/fields/LengthCSS/@types'
+import * as NFieldLengthCSS from 'modules/forms/fields/LengthCSS/@types'
 
 const props: NFieldLengthCSS.IFieldLengthCSS = {
   value: '20vw',
