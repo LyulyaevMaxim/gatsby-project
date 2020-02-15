@@ -20,22 +20,21 @@
     "storybook": "start-storybook --config-dir ./configs/storybook -p 6006",
     "storybook:build": "build-storybook --config-dir ./configs/storybook",
     "test:unit": "IS_TESTS=true jest --config ./configs/tests/jest.config.js --detectOpenHandles --no-cache",
-    "test:e2e": "START_SERVER_AND_TEST_INSECURE=1 start-server-and-test develop https://localhost:8000 cy:open",
-    "test:e2e-ci": "START_SERVER_AND_TEST_INSECURE=1 start-server-and-test develop https://localhost:8000 cy:run",
-    "format": "prettier --write *.{html,tsx,ts,jsx,js,json,css,pcss,svg}",
+    "test:e2e": "yarn develop -o=false & yarn cy:open",
+    "test:e2e-ci": "yarn build && yarn server && yarn cy:run",
+    "format": "prettier --write './**/*.{html,tsx,ts,jsx,js,json,css}'",
     "lint:js": "eslint --fix './src/**/*.{js,jsx}' & tslint --project './tsconfig.json' --config './configs/linters/tslint.json' './src/**/*.{ts,tsx}' & tsc --noEmit",
     "lint:css": "stylelint './src/**/*.{css,pcss}' & cross-env withJS=true stylelint './src/**/*.{tsx,jsx}'",
     "build": "yarn gatsbyTS build",
     "serve": "yarn gatsbyTS serve",
     "deploy::netlify": "npx netlify-cli deploy",
     "deploy::now": "yarn build && cd public && now -d --public",
+    "deploy::docker": "yarn --cwd=./configs/docker docker:deploy",
     "deploy::github": "yarn build --prefix-paths && gh-pages -d public",
-    "deploy::docker": "yarn build && yarn version-increment && sudo docker build -t lyulyaevma/gatsby-project:$(cat version.num) . && sudo docker push lyulyaevma/gatsby-project:$(cat version.num)",
     "upgrade-packages": "node ./configs/upgradePackages.js",
     "gatsbyTS": "ts-node ./node_modules/.bin/gatsby",
-    "version-increment": "perl -i -pe 's/^((\\d+\\.)*)(\\d+)(.*)$/$1.($3+1).$4/e' < version.num version.num",
-    "cy:open": "cypress open",
-    "cy:run": "cypress run"
+    "cy:open": "cypress open --config-file=./configs/tests/cypress.config.json",
+    "cy:run": "cypress run --parallel"
   },
   "husky": {
     "hooks": {
@@ -85,6 +84,11 @@
     "npm-check-updates": "3.2.2",
     "prettier": "1.19.1"
   },
+  "resolutions": {
+    "immer": "4.0.0",
+    "react": "16.11.0",
+    "react-dom": "16.11.0"
+  },
   "keywords": [
     "gatsby",
     "react",
@@ -99,10 +103,5 @@
   },
   "bugs": {
     "url": "https://github.com/LyulyaevMaxim/gatsby-project/issues"
-  },
-  "resolutions": {
-    "immer": "4.0.0",
-    "react": "16.11.0",
-    "react-dom": "16.11.0"
   }
 }
