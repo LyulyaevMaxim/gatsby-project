@@ -57,10 +57,10 @@ jobs:
         run: yarn build
 
       - name: Deploying application
-        run: npx netlify-cli deploy -s ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_ACCESS_TOKEN }}
+        run: npx netlify deploy -s ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_ACCESS_TOKEN }}
 
       - name: Building storybook
         run: yarn storybook:build
 
       - name: Deploying storybook
-        run: npx netlify-cli deploy --dir=storybook-static -s ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_ACCESS_TOKEN }}
+        run: npx netlify deploy --dir=storybook-static -s ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_ACCESS_TOKEN }}
