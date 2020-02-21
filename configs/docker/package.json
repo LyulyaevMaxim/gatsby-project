@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "docker:build": "docker image build -t lyulyaevma/gatsby-project:$(cat version.num) -f ./Dockerfile ../../",
-    "docker:run": "docker container run --publish 8000:9000 --name gatsby-project lyulyaevma/gatsby-project:$(cat version.num)",
+    "docker:run": "docker container run --rm -it --publish 8000:80 --name gatsby-project lyulyaevma/gatsby-project:$(cat version.num)",
     "docker:deploy": "yarn version-increment && docker image push lyulyaevma/gatsby-project:$(cat version.num)",
     "predocker:build": "yarn --cwd=../../ build",
     "predocker:run": "docker container rm --force gatsby-project || exit 0",
